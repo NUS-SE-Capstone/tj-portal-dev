@@ -42,7 +42,7 @@ const activeHandle = id => {
   const n = value.has(id)
   if (value.size >= 6 && !n){
     // 提示
-    ElMessageBox.alert('最多可以选择6个兴趣哦', '提示：',{confirmButtonText: '知道了', callback:() => {}})
+    ElMessageBox.alert('6 interest at most', '提示：',{confirmButtonText: 'OK', callback:() => {}})
     return false
   }
   n ? value.delete(id) : value.add(id)

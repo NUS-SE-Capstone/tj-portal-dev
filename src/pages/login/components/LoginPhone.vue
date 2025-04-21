@@ -9,17 +9,17 @@
       class="demo-dynamic"
     >
       <el-form-item prop="userName" label="">
-        <el-input v-model="fromData.cellPhone" placeholder="请输入手机号" />
+        <el-input v-model="fromData.cellPhone" placeholder="Please input phone number" />
       </el-form-item>
       <el-form-item prop="password" label="">
-        <el-input v-model="fromData.password" placeholder="请输入验证码" />
+        <el-input v-model="fromData.password" placeholder="Please input captcha" />
       </el-form-item>
       <el-form-item class="marg-b-10">
         <div class="fx-sb">
             <div>
-                <el-checkbox v-model="fromData.rememberMe" label="7天免登录" size="large" />
+                <el-checkbox v-model="fromData.rememberMe" label="7days login pass" size="large" />
             </div>
-            <div>找回密码</div>
+            <!-- <div>reset password</div> -->
         </div>
       </el-form-item>
       <el-form-item class="marg-bt-15">
@@ -27,7 +27,7 @@
       </el-form-item>
     </el-form>
     <div class="font-bt text-center"  @click="goRegister">
-        去注册
+        Go Register
     </div>
   </div>
 </template>
@@ -46,16 +46,16 @@ const fromData = reactive({
 // 效验规则
 const rules = reactive({
   userName: [
-    { required: true, message: "请输入正确的手机号", trigger: "blur" },
+    { required: true, message: "Please input correct phone", trigger: "blur" },
   ],
   password: [
-    { required: true, message: "请输入正确的用验证码", trigger: "blur"},
+    { required: true, message: "please input correct captcha", trigger: "blur"},
   ],
 });
 // 数据提交
 const submitForm = (formEl) => {
   ElMessage({
-      message: '暂不支持手机号登录， 请使用用户名密码登录',
+      message: 'No support for phone login, please use AccountLogin',
   });
   if (!formEl) return;
   formEl.validate(async (valid) => {
@@ -78,7 +78,7 @@ const submitForm = (formEl) => {
                 message: res.msg,
                 type: 'error'
               });
-              console.log('登录失败')
+              console.log('Login failed')
             }
           })
           .catch(err => {});

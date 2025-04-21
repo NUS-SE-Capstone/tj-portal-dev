@@ -9,23 +9,23 @@
       class="demo-dynamic"
     >
       <el-form-item prop="cellPhone" label="">
-        <el-input v-model="fromData.cellPhone" placeholder="请输入手机号" />
+        <el-input v-model="fromData.cellPhone" placeholder="Please input username/phone" />
       </el-form-item>
       <el-form-item prop="password" label="">
-        <el-input v-model="fromData.password" placeholder="请输入密码" />
+        <el-input v-model="fromData.password" placeholder="Please input password" />
       </el-form-item>
-      <el-form-item prop="code" label="">
+      <!-- <el-form-item prop="code" label="">
         <div class="fx-sb">
-          <el-input v-model="fromData.code" placeholder="请确认短信验证码" />
-          <span class="bt bt-grey" @click="verifycodeHandle">发送验证码</span> 
+          <el-input v-model="fromData.code" placeholder="Please input captcha" />
+          <span class="bt bt-grey" @click="verifycodeHandle">send captcha</span>
         </div>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item class="marg-bt-15">
-        <div class="bt" @click="submitForm(formRef)">注册</div>
+        <div class="bt" @click="submitForm(formRef)">Register</div>
       </el-form-item>
     </el-form>
     <div class="font-bt text-center" @click="goLogin()">
-        去登录
+        Go Login
     </div>
   </div>
 </template>

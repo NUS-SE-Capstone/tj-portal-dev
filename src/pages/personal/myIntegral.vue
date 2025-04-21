@@ -20,7 +20,7 @@
         <div class="listRt">
             <div class="tit fx-sb">
               <span>学霸天梯榜</span>
-              <span class="more font-bt" @click="() => $router.push({path: 'myIntegralRanking', query:{rank: seasonsData.rank, points:seasonsData.points}})">更多&gt;</span>
+              <span class="more font-bt" @click="() => $router.push({path: 'myIntegralRanking', query:{rank: seasonsData.rank, points:seasonsData.points}})">More &gt;</span>
             </div>
             <IntegralRankTab :data="seasonsData"></IntegralRankTab>
         </div>

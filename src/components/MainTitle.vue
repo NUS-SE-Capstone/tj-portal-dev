@@ -3,7 +3,7 @@
   <div class="mainTitle fx">
     <div class="marg-rt-10">{{ title }}</div>
     <div  @click="() => $router.push(moreUrl)" class="more ft-cl-des ft-14 font-bt1">
-      更多 <i class="iconfont zhy-btn_more" style="font-size: 24px;"></i>
+      More <i class="iconfont zhy-btn_more" style="font-size: 24px;"></i>
     </div>
   </div>
 </template>
@@ -12,7 +12,7 @@
 defineProps({
   title: {
     type: String,
-    default: "课程标题",
+    default: "Course Title",
   },
   more: {
     type: Boolean,

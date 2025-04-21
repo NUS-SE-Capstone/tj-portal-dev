@@ -4,7 +4,7 @@
   <div class="head fx-sb">
     <TableSwitchBar :data="[...data]" @changeTable="checkHandle"></TableSwitchBar>
     <div class="ft-14 font-bt">
-      <span @click="changeHandle">修改兴趣</span>
+      <span @click="changeHandle">Alter Interest</span>
     </div>
   </div>
   <div class="classInfo fx" v-if="teacherInfo">
@@ -12,12 +12,12 @@
       <div class="info fx-sb">
         <div class="fx-al-ct fx-1 ">
           <img :src="teacherInfo.icon || '/img-tx/1.jpg'" alt="" srcset="">
-          讲师：<span>
+          Teacher: <span>
           {{teacherInfo.teacher}}
         </span>
         </div>
         <div class="" @click="$router.push({path:'/details',query:{id:teacherInfo.id}})">
-          <span class="bt">立即报名</span>
+          <span class="bt">Sign Up</span>
         </div>
       </div>
     </div>
@@ -27,14 +27,14 @@
              @mouseover="teacherInfo = item"
              @click="$router.push({path:'/details',query:({id: item.id})})">
           <span class="title">{{item.name}}</span>
-          <span class="desc">共{{item.sections}}节 <i>.</i> {{item.sold}}人正在学习 </span>
+          <span class="desc">共{{item.sections}}节 <i>.</i> {{item.sold}} are learning </span>
         </div>
       </div>
     </div>
   </div>
   <div class="classInfo " v-else>
     <div class="nodata bg-wt fx-ct">
-      <span>该兴趣分类下无课程</span>
+      <span>No courses in this interest</span>
     </div>
   </div>
 </div>
@@ -93,7 +93,7 @@ const getClassListData = async (id) => {
     })
     .catch(() => {
       ElMessage({
-        message: "课程列表数据获取失败",
+        message: "Fail to get course list data",
         type: "error",
       });
     });

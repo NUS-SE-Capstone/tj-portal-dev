@@ -8,7 +8,7 @@
       <!-- 头部分类-start -->
       <div v-if="route.path != '/main/index' && route.path != '/login' " class="courseClass font-bt2"
            @mouseover="() => isShow = true" @mouseout="() => isShow = false">
-        <i class="iconfont zhy-icon_fenlei_nor"></i> 分类
+        <i class="iconfont zhy-icon_fenlei_nor"></i> Classification
       </div>
       <div v-if="route.path != '/main/index' && route.path != '/login' " class="courseClassList" v-show="isShow"
            @mouseover="() => isShow = true" @mouseout="() => isShow = false">
@@ -22,7 +22,7 @@
             v-model="input"
             class="headerSearch "
             size="large"
-            placeholder="请输入关键字"
+            placeholder="Please input keywords"
             @keyup.enter="SearchHandle"
 
         >
@@ -33,23 +33,23 @@
       </div>
       <div class="fx-al-ct pt-rt">
         <div class="car fx-al-ct font-bt2" v-if="userInfo" @click="() => $router.push('/pay/carts')">
-          <i class="iconfont">&#xe6f3;</i> 购物车
+          <i class="iconfont">&#xe6f3;</i> ShoppingCart
         </div>
         <!-- 学习中心 - start -->
         <div v-if="userInfo  && userInfo.name">
           <span class="marg-lr-40 font-bt2" style="padding:27px 0"
                 @click="() => {$router.push('/personal/main/myClass')}" @mouseover="()=> learningShow = true"
-                @mouseout="() => learningShow = false">学习中心</span>
+                @mouseout="() => learningShow = false">Learning Center</span>
           <div  class="learningCont" v-show="learningShow && learnClassInfo && learnClassInfo.courseAmount"
                @mouseover="()=> learningShow = true" @mouseout="() => learningShow = false">
             <div class="count"><em>{{ learnClassInfo && learnClassInfo.courseAmount }}</em> 门课程</div>
             <div class="info" v-if="learnClassInfo &&learnClassInfo.courseId">
               <div class="fx-sb">
-                <span>正在学习：</span>
+                <span>Studying:</span>
                 <div class="fx">
                   <span class="bt"
-                        @click="() => $router.push({path: '/learning/index', query: {id: learnClassInfo.courseId}})">继续学习</span>
-                  <span class="bt bt-grey1" @click="() => $router.push('/personal/main/myClass')">全部课程</span>
+                        @click="() => $router.push({path: '/learning/index', query: {id: learnClassInfo.courseId}})">Continue study</span>
+                  <span class="bt bt-grey1" @click="() => $router.push('/personal/main/myClass')">All Courses</span>
                 </div>
               </div>
               <div class="tit">{{ learnClassInfo && learnClassInfo.courseName }}</div>
@@ -66,8 +66,8 @@
           <!-- <div class="font-bt2 pd-lf-10" @click="() => $router.push('/login')"> 退出 </div> -->
         </div>
         <div class="cur-pt" v-else>
-          <span class="font-bt2" @click="() => $router.push({path: '/login', query: {md: 'register'}})">注册 </span><span>/</span>
-          <span class="font-bt2" @click="() => $router.push('/login')"> 登录</span>
+          <span class="font-bt2" @click="() => $router.push({path: '/login', query: {md: 'register'}})">Register </span><span>/</span>
+          <span class="font-bt2" @click="() => $router.push('/login')"> Login</span>
         </div>
 
       </div>
@@ -178,7 +178,7 @@ const getCourseClassHandle = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "分类请求出错！",
+          message: "classified req err!！",
           type: "error",
         });
       });

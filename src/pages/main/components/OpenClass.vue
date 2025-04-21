@@ -13,7 +13,7 @@ import ClassCards from '@/components/ClassCards.vue'
 const props = defineProps({
   title:{
     type: String,
-    default:'模块标题'
+    default:'ModuleTitle'
   },
   data:{
     type: Array,

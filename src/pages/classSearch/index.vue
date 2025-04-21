@@ -4,12 +4,12 @@
     <div class="container searchBar">
       <!-- 结果统计 -->
       <div class="result" v-if="isLogin() && isShow && searchParams.keyword">
-        <span class="searchKey">关键词：<em>{{searchParams.keyword}}</em> <i class="close iconfont zhy-btn_qingchu1" @click="clearSearchKey"></i></span> 共找到 <em> {{count}} </em> 门“ <em> {{searchParams.keyword}} </em> ”相关课程
+        <span class="searchKey">Keywords:<em>{{searchParams.keyword}}</em> <i class="close iconfont zhy-btn_qingchu1" @click="clearSearchKey"></i></span> Find <em> {{count}} </em> Courses“ <em> {{searchParams.keyword}} </em> ” Related
       </div>
       <!-- 筛选条件 -->
-      <div class="title">全部课程</div>
+      <div class="title">All Courses</div>
       <SearchKey :data="searchType" @searchKey="searchKey" :active="activeId" :key="activeId"></SearchKey>
-      <SearchKey :data="searchCost" @searchKey="searchKey"></SearchKey>
+      <!-- <SearchKey :data="searchCost" @searchKey="searchKey"></SearchKey> -->
     </div>
     <div class="searchContain bg-wt">
       <div class="container">
@@ -29,7 +29,7 @@
            <ClassCards type="search" class="items marg-bt-20" v-for="(item, index) in searchResultData" :data="item" :key="index"></ClassCards>
         </div>
         <div class="content fx-ct noData" v-else>
-          搜索结果为空！
+          Empty Search Results!
         </div>
       </div>
     </div>
@@ -48,9 +48,9 @@ import ClassCards from '@/components/ClassCards.vue'
 import { useRoute } from "vue-router";
 import {isLogin, dataCacheStore} from '@/store'
 const dataCache = dataCacheStore();
-const searchType = ref({subKey: 'categoryIdLv1', title: "课程分类", searchKeys:[{id:'all', name: '全部'},  ...dataCache.getCourseClassDataes]});
-const searchCost = ref({subKey: 'free', title: "收付费", searchKeys:[{id:'all', name: '全部'},{id: '1', name: '免费'},{id: '0', name: '付费'}]});    
-const soleBar = ref([{key:'推荐', value:'all'},{key:'最新', value:'publishTime'}, {key:'最热', value:'sold'}])
+const searchType = ref({subKey: 'categoryIdLv1', title: "Type", searchKeys:[{id:'all', name: 'All'},  ...dataCache.getCourseClassDataes]});
+const searchCost = ref({subKey: 'free', title: "IsFree", searchKeys:[{id:'all', name: 'All'},{id: '1', name: 'free'},{id: '0', name: 'Charge'}]});    
+const soleBar = ref([{key:'Recom', value:'all'},{key:'Newest', value:'publishTime'}, {key:'Hottest', value:'sold'}])
 const searchParams = ref({  // 搜索参数定义
   keyword: '',
   categoryIdLv1: '',
@@ -109,7 +109,7 @@ const getClassCategoryData = async () => {
   await getClassCategorys()
     .then((res) => {
       if (res.code === 200) {
-        searchType.value.searchKeys = [{id:'all', name: '全部'}, ...res.data]
+        searchType.value.searchKeys = [{id:'all', name: 'All'}, ...res.data]
       } else {
         ElMessage({
           message:res.data.msg,
@@ -119,7 +119,7 @@ const getClassCategoryData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "分类请求出错！",
+        message: "classified req err!！",
         type: 'error'
       });
     });
@@ -186,7 +186,7 @@ async function search (){
     })
     .catch(() => {
       ElMessage({
-        message: "分类请求出错！",
+        message: "classified req err!！",
         type: 'error'
       });
     });

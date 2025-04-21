@@ -9,25 +9,25 @@
       class="demo-dynamic"
     >
       <el-form-item prop="username" label="">
-        <el-input v-model="fromData.username" placeholder="请输入用户名或手机号" />
+        <el-input v-model="fromData.username" placeholder="Please input username" />
       </el-form-item>
       <el-form-item prop="password" label="">
-        <el-input type="pass" :show-password="true" v-model="fromData.password" placeholder="请输入密码" />
+        <el-input type="pass" :show-password="true" v-model="fromData.password" placeholder="please input password" />
       </el-form-item>
       <el-form-item class="marg-b-10">
         <div class="fx-sb">
             <div>
-                <el-checkbox v-model="fromData.rememberMe" label="7天免登录" size="large" />
+                <el-checkbox v-model="fromData.rememberMe" label="7days login pass" size="large" />
             </div>
-            <div>找回密码</div>
+            <!-- <div>reset password</div> -->
         </div>
       </el-form-item>
       <el-form-item class="marg-bt-15">
-        <div class="bt" @click="submitForm(formRef)">登 录</div>
+        <div class="bt" @click="submitForm(formRef)">Login</div>
       </el-form-item>
     </el-form>
     <div class="font-bt text-center" @click="goRegister">
-        去注册
+        Go Register
     </div>
   </div>
 </template>
@@ -48,17 +48,17 @@ const formRef = ref();
 const checked = ref(false)
 // 登录参数效验
 const fromData = reactive({
-  username: "18810966208",
-  password: "123456",
+  username: "",
+  password: "",
   type: 1
 });
 // 效验规则
 const rules = reactive({
   username: [
-    { required: true, message: "请输入正确的用户名或手机号", trigger: "blur" },
+    { required: true, message: "Please input correct username", trigger: "blur" },
   ],
   password: [
-    { required: true, message: "请输入正确的用密码", trigger: "blur"},
+    { required: true, message: "Please input correct password", trigger: "blur"},
   ],
 });
 // 登录
@@ -85,7 +85,7 @@ const submitForm = (formEl) => {
               message: res.msg,
               type: 'error'
           });
-					console.log('登录失败')
+					console.log('Login failed')
 				}
 			})
 			.catch(err => {
@@ -96,7 +96,7 @@ const submitForm = (formEl) => {
       });
     } else {
       ElMessage({
-          message: '登录出错，请重新尝试',
+          message: 'Login failed, please retry',
           type: 'error'
       });
       return false;

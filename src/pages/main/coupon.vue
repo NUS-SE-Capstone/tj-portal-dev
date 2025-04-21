@@ -2,7 +2,7 @@
 <template>
   <div class="discountChoiceWrapper">
     <div class="container">
-      <Breadcrumb data="优惠券"></Breadcrumb>
+      <Breadcrumb data="Coupon"></Breadcrumb>
     </div>
     <div class="couponItems container bg-wt">
        <div class="mainCouponCards fx" v-for="(item, index) in couponData" :key="index">
@@ -11,20 +11,20 @@
             <div class="desc">{{item.rule}}</div>
           </div>
           <div class="price ft-cl-wt" v-if="item.discountType == 2 || item.discountType == 5">
-            <div><em>{{item.discountValue / 10}}</em> 折</div>
+            <div><em>{{item.discountValue / 10}}</em> discount</div>
             <div class="desc">{{item.rule}}</div>
           </div>
           <div class="info">
             <div class="tit">{{item.name}}</div>
-            <div><em>适用平台：</em>{{item.specific ? '指定课程' : '全部课程'}}</div>
-            <div><em>有效日期：</em> {{item.termDays ? `${item.termDays}天` : moment(item.termEndTime).format('YYYY-MM-DD hh:mm:ss')}}</div>
+            <div><em>Platform: </em>{{item.specific ? 'specific courses' : 'all courses'}}</div>
+            <div><em>termDays: </em> {{item.termDays ? `${item.termDays}days` : moment(item.termEndTime).format('YYYY-MM-DD hh:mm:ss')}}</div>
           </div>
           <div class="butCont fx-ct" v-if="item.received">
-            <span  @click="() => $router.push('/search/index')" class="bt">去使用</span>
+            <span  @click="() => $router.push('/search/index')" class="bt">Go use</span>
           </div>
           <div class="butCont fx-ct" v-else>
-            <span v-if="item.available" @click="getCouponData(item)" class="bt">立即领取</span>
-            <span v-else class="bt bt-grey">已领完</span>
+            <span v-if="item.available" @click="getCouponData(item)" class="bt">Get it</span>
+            <span v-else class="bt bt-grey">Already Sent out</span>
           </div>
        </div>
     </div>
@@ -65,7 +65,7 @@ const getCollectableCouponData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "分类请求出错！",
+        message: "classified req err!！",
         type: 'error'
       });
     });
@@ -81,7 +81,7 @@ const getCouponData = async (item) => {
         getCollectableCouponData()
         item.recieveStatus = 2
         ElMessage({
-          message:'优惠券领取成功!',
+          message:'Get coupon success!',
           type: 'success'
         });
       } else {
@@ -93,7 +93,7 @@ const getCouponData = async (item) => {
     })
     .catch(() => {
       ElMessage({
-        message: "分类请求出错！",
+        message: "classified req err!",
         type: 'error'
       });
     });

@@ -42,10 +42,10 @@ async function refreshToken(err){
   }
   // refreshing.value = false;
   ElMessageBox.alert(
-    '请先登录！',
-    '未登录或登录超时',
+    'Please Login!',
+    'No Login/Timeout',
     {
-      confirmButtonText: '重新登录',
+      confirmButtonText: 'relogin',
       callback: () => {
         router.push('/login')
       },
@@ -58,11 +58,11 @@ function alertLoginMessage() {
   sessionStorage.removeItem('userInfo');
   sessionStorage.removeItem("token");
   ElMessageBox.confirm(
-    '您的账号登录超时或在其他机器登录，请重新登录或更换账号登录！',
-    '登录超时',
+    'Timeout/Other place Login! Please relogin!',
+    'Login timeout',
     {
-      confirmButtonText: '重新登录',
-      cancelButtonText: '继续浏览',
+      confirmButtonText: 'relogin',
+      cancelButtonText: 'ignore',
       type: 'warning',
     }
     )

@@ -85,8 +85,8 @@
                   </div>
                 </div>
                 <div></div>
-                <p @click="clickLoad" v-if="!noMore" class="fx-ct ft-14 ft-cl-des">点击查看更多</p>
-                <p class="fx-ct ft-14 ft-cl-des" v-if="noMore">没有更多了</p>
+                <p @click="clickLoad" v-if="!noMore" class="fx-ct ft-14 ft-cl-des">See More</p>
+                <p class="fx-ct ft-14 ft-cl-des" v-if="noMore">No More</p>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@
         <!-- 回复列表 -->
         </div>
          <p class="fx-ct ft-14 ft-cl-des" v-if="replayloading">Loading...</p>
-         <p class="fx-ct ft-14 ft-cl-des" v-if="replaynoMore">没有更多了</p>
+         <p class="fx-ct ft-14 ft-cl-des" v-if="replaynoMore">No More</p>
       </div>
   </el-dialog>
   </div>

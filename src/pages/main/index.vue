@@ -25,19 +25,19 @@
     <!-- 新课推荐 -->
     <div class="pd-tp-30 bg-wt">
       <OpenClass
-        title="新课推荐"
+        title="New Courses Recommend"
         class="container"
         :data="freeClassData"
       ></OpenClass>
     </div>
     <!-- 广告位 -->
-    <div class="globalTopBanner" style="display: block;">
+    <!-- <div class="globalTopBanner" style="display: block;">
       <img src="/src/assets/adv.png" />
-    </div>
+    </div> -->
     <!-- 精品好课 -- start -->
     <div class="pd-tp-30">
       <OpenClass
-        title="精品好课"
+        title="Good Courses Recommend"
         class="container"
         :data="goodClassData"
       ></OpenClass>
@@ -46,7 +46,7 @@
     <!-- 精品新课 -- start -->
     <div class="pd-tp-30">
       <OpenClass
-          title="精品新课"
+          title="Good New Courses"
           class="container"
           :data="newClassData"
       ></OpenClass>
@@ -58,12 +58,12 @@
         <template #header="{ close, titleId }">
           <div class="dialogHead fx-sb">
             <div>
-              <span class="titleClass marg-rt-10">设置学习兴趣</span>
-              <span class="ft-cl-des">打造你的专属在线学习平台</span>
+              <span class="titleClass marg-rt-10">Set interest</span>
+              <span class="ft-cl-des">Build your own learning platform</span>
             </div>
             <div class="butCont fx">
-              <span class="bt-grey marg-rt-15" @click="close">下次再选</span>
-              <span class="bt" @click="saveInterest">保存</span>
+              <span class="bt-grey marg-rt-15" @click="close">Choose next time</span>
+              <span class="bt" @click="saveInterest">Save</span>
             </div>
           </div>
         </template>
@@ -140,7 +140,7 @@ const getClassCategoryData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "分类请求出错！",
+        message: "classified req err!！",
         type: "error",
       });
     });
@@ -165,7 +165,7 @@ const getFreeClassListData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "分类请求出错！",
+        message: "classified req err!！",
         type: "error",
       });
     });
@@ -181,7 +181,7 @@ const getGoodClassListData = async () => {
       }
     })
     .catch(() => {
-      ElMessage("分类请求出错！");
+      ElMessage("classified req err!！");
     });
 };
 // 新课推荐
@@ -196,7 +196,7 @@ const getNewClassListData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "分类请求出错！",
+        message: "classified req err!！",
         type: "error",
       });
     });
@@ -220,7 +220,7 @@ const getInterestData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "兴趣列表获取失败！",
+        message: "Get interest list failed!",
         type: "error",
       });
     });
@@ -244,7 +244,7 @@ const saveInterest = async () => {
   }
   if (str == "") {
     ElMessage({
-      message: "您还没有选择兴趣，请先选择兴趣后再保存！",
+      message: "Please choose interest and save!",
       type: "success",
     });
     return;
@@ -253,7 +253,7 @@ const saveInterest = async () => {
     .then((res) => {
       if (res.code === 200) {
         ElMessage({
-          message: "兴趣保存成功！",
+          message: "save interest success",
           type: "success",
         });
         getInterestData();
