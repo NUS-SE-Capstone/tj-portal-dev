@@ -1,8 +1,8 @@
 <!-- 404页面 -->
 <template>
 <div class="noPage container fx-ct bg-wt">
-  <result title="404 Not Found" tip="抱歉，您访问的页面不存在" type="404">
-    <span class="bt" @click="() => $router.push('/')">返回首页</span>
+  <result title="404 Not Found" tip="Sorry, the page doesn't exist" type="404">
+    <span class="bt" @click="() => $router.push('/')">Back to Main Page</span>
   </result>
 </div>
   

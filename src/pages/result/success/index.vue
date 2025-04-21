@@ -2,11 +2,11 @@
 <template>
   <div class="success container bg-wt fx-fd-col fx-ct">
     <IconSuccess></IconSuccess>
-    <div class="title">发布成功</div>
+    <div class="title">Upload Success!</div>
     <div class="ft-14 marg-bt-20 ft-cl-des">
-      请耐心等待，肯定会有很多热心的同学回答你的问题。
+      Please wait, there must be many classmates willing to answer!
     </div>
-    <div @click="() => $router.go(-2)" class="ask bt ft-14">查看我的课程</div>
+    <div @click="() => $router.go(-2)" class="ask bt ft-14">View my courses</div>
   </div>
 </template>
 
