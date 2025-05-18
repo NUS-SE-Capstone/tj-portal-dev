@@ -1,28 +1,28 @@
 <!-- 个人设置 -->
 <template>
   <div class="mySetWrapper content">
-    <CardsTitle class="marg-bt-40" title="个人设置" />
+    <CardsTitle class="marg-bt-40" title="Personal Settings" />
     <TableSwitchBar :data="tabData" @changeTable="checkHandle"></TableSwitchBar>  
     <div v-if="act == 0" class="fx-sb pd-tp-30">
       <div>
         <div class="fx">
           <!-- 一期先不加  放到二期 -->
           <!-- <div class="item fx">
-            <span class="lab">账号：</span><el-input v-model="input" placeholder="请输入内容"></el-input>
+            <span class="lab">账号：</span><el-input v-model="input" placeholder="please input"></el-input>
           </div> -->
           <div class="item fx">
-            <span class="lab">昵称：</span> <el-input v-model="user.name" placeholder="请输入内容"></el-input>
+            <span class="lab">Name</span> <el-input v-model="user.name" placeholder="please input"></el-input>
           </div>
         </div>
         <div class="item fx">
-          <span class="lab">性别：</span>
+          <span class="lab">Gender</span>
           <el-radio-group class="radioGroup" v-model="user.gender">
-            <el-radio :label="0">男</el-radio>
-            <el-radio :label="1">女</el-radio>
+            <el-radio :label="0">Male</el-radio>
+            <el-radio :label="1">Female</el-radio>
           </el-radio-group>
         </div>
         <div class="item fx">
-          <div class="bt" @click="updateUserInfoHandle">更新信息</div>
+          <div class="bt" @click="updateUserInfoHandle">Update Info</div>
         </div>
       </div>
       <div>
@@ -35,14 +35,14 @@
           >
           <img v-if="imageUrl" :src="imageUrl" class="avatar">
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-          <div class="uploadBut"><span>上传头像</span></div>
+          <div class="uploadBut"><span>Upload Avatar</span></div>
         </el-upload>
       </div>
     </div>
     <div v-else class="set pd-tp-30">
-      <div class="line fx-sb"><div><span>登录密码</span> 当前密码强度：</div><span class="font-bt" @click="changeHandle">修改</span></div>
-      <div class="line fx-sb"><div><span>绑定手机</span> 已绑定手机：177****8888</div><span class="font-bt" @click="changeHandle">修改</span></div>
-      <div class="line fx-sb"><div><span>绑定邮箱</span> 已绑定邮箱：anthony@itcast.cn</div><span class="font-bt" @click="changeHandle">去解绑</span></div>
+      <div class="line fx-sb"><div><span>Password</span> </div><span class="font-bt" @click="changeHandle">update</span></div>
+      <div class="line fx-sb"><div><span>CellPhone</span> {{ user.cellPhone }}</div><span class="font-bt" @click="changeHandle">update</span></div>
+      <div class="line fx-sb"><div><span>Email</span> {{ user.email ?? 'null' }}</div><span class="font-bt" @click="changeHandle">update</span></div>
     </div>
   </div>
 </template>
@@ -70,8 +70,8 @@ const env = import.meta.env.MODE || "development"
 const actions = proxy[env].host+'/ms/files'
 const uploadHeaders = {authorization: store.getToken}
 const tabData = [
-  {id: 0, name: '基本信息'},
-  {id: 1, name: '安全设置'}
+  {id: 0, name: 'Basic'},
+  {id: 1, name: 'Security'}
 ]
 // 切换基本信息和安全设置
 const act = ref(0)
@@ -82,7 +82,8 @@ const checkHandle = val => {
 const user = reactive({
   name: userInfo.value.name,
   icon: userInfo.value.icon,
-  gender: userInfo.value.gender || 0
+  gender: userInfo.value.gender || 0,
+  cellPhone: userInfo.value.cellPhone,
 })
 // 图片上传
 const imageUrl = ref(user.icon)

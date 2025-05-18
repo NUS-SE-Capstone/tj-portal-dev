@@ -72,7 +72,7 @@
         <!-- 笔记模块 -->
         <Note  v-if="isLogin() && isSignUp" v-show=" actId == 4" :id="detailsId"></Note>
         <div class="fx-ct ft-cl-des" style="height: 400px;" v-show="actId == 5" :id="detailsId">
-          暂无数据！
+          No Data!
         </div>
       </div>
       <div class="ritCont">

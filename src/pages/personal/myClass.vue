@@ -9,9 +9,9 @@
       </div>
       <!-- 学习计划 -->
       <div class="personalCards" v-if="planData && typeof(planData) != 'string'">
-        <CardsTitle title="学习计划">
+        <CardsTitle title="Study Plan">
           <div class="ft-wt-400"><span
-              class="marg-rt-20">本周计划：<em>{{ weekFinishedAmount || 0 }}</em> / {{ weekPlanAmount || 0 }}</span> <span>积分奖励：<em>{{ totalPoints || 0 }}</em></span>
+              class="marg-rt-20">Week Plan: <em>{{ weekFinishedAmount || 0 }}</em> / {{ weekPlanAmount || 0 }}</span> <span>Rewards: <em>{{ totalPoints || 0 }}</em></span>
           </div>
         </CardsTitle>
         <PlanTable :data="planData"></PlanTable>
@@ -19,13 +19,13 @@
       <!-- 全部课程 -->
       <div id="allClass" v-if="myClassData != null && myClassData.length > 0">
         <div class="personalCards">
-          <CardsTitle class="marg-bt-20" title="全部课程"/>
+          <CardsTitle class="marg-bt-20" title="All Courses"/>
           <div class=""><span></span></div>
           <div class="item marg-bt-20" v-for="item in myClassData">
             <ClassCards :data="item" @planHandle="planHandle" type="2"/>
           </div>
         </div>
-        <div v-if="count > 10" class="fx-ct ft-18 ft-wt-600">查看全部</div>
+        <div v-if="count > 10" class="fx-ct ft-18 ft-wt-600">View All</div>
       </div>
     </div>
     <el-dialog

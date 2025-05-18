@@ -10,7 +10,7 @@
 defineProps({
   title:{
     type: String,
-    default: '最近学习'
+    default: 'Recent Learn'
   }
 })  
 </script>

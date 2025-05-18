@@ -1,7 +1,7 @@
 <!-- 我的收藏 -->
 <template>
   <div class="myCollect bg-wt">
-    <div class="content">功能研发中, 敬请期待！！</div>
+    <div class="content">Developing</div>
   </div>
 </template>
 <script setup>

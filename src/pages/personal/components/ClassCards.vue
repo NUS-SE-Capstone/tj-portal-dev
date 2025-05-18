@@ -7,30 +7,30 @@
     <div class="info fx-1">
       <div class="tit ">{{data.courseName}}</div>
       <div>
-        <span>有效日期：</span>
-        {{data.expireTime == null ? '永久有效' :
+        <span>Available: </span>
+        {{data.expireTime == null ? 'permanent' :
           new Date(data.createTime).toLocaleDateString() + ' - ' + new Date(data.expireTime).toLocaleDateString()}}
       </div>
-      <div><span>已学习：</span><em>{{data.learnedSections}}</em> / {{data.sections}}</div>
-      <div v-if="type == '1'"><span>正在学习：</span>第{{data.latestSectionIndex}}节 {{data.latestSectionName}}</div>
+      <div><span>Learned: </span><em>{{data.learnedSections}}</em> / {{data.sections}}</div>
+      <div v-if="type == '1'"><span>Learning: </span>Section {{data.latestSectionIndex}} {{data.latestSectionName}}</div>
     </div>
     <div class="btnCont">
       <div class="btn" v-if="type == '1'" @click="() => $router.push({path: '/learning/index', query: {id: data.courseId}})">
-        <span class="bt bt-round">继续学习</span>
+        <span class="bt bt-round">Continue</span>
       </div>
       <div class="btn" v-if="type == '2' && data.status != 3" @click="() => $router.push({path: '/learning/index', query: {id: data.courseId}})">
-        <span class="bt bt-round" v-if="data.status == 0">马上学习</span>
-        <span class="bt bt-round" v-if="data.status == 1">继续学习</span>
-        <span class="bt bt-round" v-if="data.status == 2">重新学习</span>
+        <span class="bt bt-round" v-if="data.status == 0">Learn Now</span>
+        <span class="bt bt-round" v-if="data.status == 1">Continue</span>
+        <span class="bt bt-round" v-if="data.status == 2">ReLearn</span>
       </div>
       <div class="btn" v-if="type == '2' && data.status != 3 && data.planStatus == 0" @click="planActive(data, 'add')">
-        <span class="bt-grey bt-round">创建计划</span>
+        <span class="bt-grey bt-round">Create Plan</span>
       </div>
       <div class="btn" v-if="type == '2' && data.status != 3 && data.planStatus == 1" @click="planActive(data, 'edit')">
-        <span class="bt-grey bt-round">修改计划</span>
+        <span class="bt-grey bt-round">Change Plan</span>
       </div>
       <div class="btn" v-if="type == '2' && data.status == 3" @click="planActive(data, 'del')">
-        <span class="bt-grey bt-round">删除课程</span>
+        <span class="bt-grey bt-round">Delete Course</span>
       </div>
     </div> 
   </div>
