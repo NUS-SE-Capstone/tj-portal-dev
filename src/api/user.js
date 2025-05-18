@@ -25,31 +25,31 @@ export const userLogins = (data) => {
 }
 // 发送验证码
 export const verifycode = (params) =>
-request({
-	url: `${AUTH_API_PREFIX}/code/verifycode`,
-	method: 'post',
-	params
-})
+	request({
+		url: `${AUTH_API_PREFIX}/code/verifycode`,
+		method: 'post',
+		params
+	})
 // 账号注册
 export const userRegist = (params) =>
-request({
-	url: `${USER_API_PREFIX}/students/register`,
-	method: 'post',
-	data:params
-})
+	request({
+		url: `${USER_API_PREFIX}/students/register`,
+		method: 'post',
+		data: params
+	})
 // 获取用户信息
 export const getUserInfo = (params) =>
 	request({
 		url: `${USER_API_PREFIX}/users/me`,
 		method: 'get',
 		params
-	})	
+	})
 // 更改用户信息
 export const updateUserInfo = (params) =>
 	request({
 		url: `/students`,
 		method: 'put',
-		data:params
+		data: params
 	})
 // 账号退出登录
 export const userLogout = () => {
