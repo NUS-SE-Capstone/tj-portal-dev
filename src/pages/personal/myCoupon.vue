@@ -26,7 +26,7 @@
         width="30%"
     >
       <div class="exchangeCoupon fx"><span>优惠券码：</span>
-        <el-input type="text" v-model="inputVal" placeholder="请输入"/>
+        <el-input type="text" v-model="inputVal" placeholder="please input"/>
       </div>
       <template #footer>
         <span class="dialog-footer">

@@ -315,7 +315,7 @@ const answerHandle = async (type) => {
   params.targetReplyId = targetInfo.value.id
   if (params.content == '') {
     ElMessage({
-          message:'请输入您的内容！',
+          message:'please input content',
           type: 'success'
         });
     return 

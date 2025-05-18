@@ -192,7 +192,7 @@ const SearchHandle = () => {
   if (input.value == '') {
     ElMessage({
       type: 'error',
-      message: '请输入搜索关键词！'
+      message: 'please input search keywords'
     })
     return false
   }
