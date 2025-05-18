@@ -17,7 +17,7 @@
       <el-form-item class="marg-b-10">
         <div class="fx-sb">
             <div>
-                <el-checkbox v-model="fromData.rememberMe" label="7days login pass" size="large" />
+                <el-checkbox v-model="fromData.rememberMe" label="7 days login pass" size="large" />
             </div>
             <!-- <div>reset password</div> -->
         </div>

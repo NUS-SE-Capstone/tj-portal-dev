@@ -64,7 +64,7 @@ onMounted(() => {
   const data = props.data[Symbol.iterator]();
   actId.value = data.next().value.id;
   // 通过二级分类id 获取对应课程列表
-  getClassListData(actId.value);
+  // getClassListData(actId.value);
 });
 
 // 点击切换效果

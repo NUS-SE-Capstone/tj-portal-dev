@@ -111,14 +111,14 @@ const newClassData = ref([]);
 // mounted生命周期
 onMounted(async () => {
   // 获取三级分类信息
-  getClassCategoryData();
+  // getClassCategoryData();
   // 获取精品公开课
-  getFreeClassListData();
-  getGoodClassListData();
-  getNewClassListData();
+  // getFreeClassListData();
+  // getGoodClassListData();
+  // getNewClassListData();
   // 获取兴趣列表 （二级分类）
   if (await isLogin()) {
-    getInterestData();
+    // getInterestData();
   }
 });
 

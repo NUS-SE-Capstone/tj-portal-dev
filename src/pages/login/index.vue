@@ -7,7 +7,7 @@
     <div class="fx-1 fx-al-ct">
       <div class="login">
         <div class="title" v-show="act != 'register'">
-          <span @click="changeLoginType('pass')" :class="act == 'pass' ? 'fx-1 active': 'fx-1'">AccountLogin</span>
+          <span @click="changeLoginType('pass')" :class="act == 'pass' ? 'fx-1 active': 'fx-1'">Account Login</span>
           <!-- <span @click="changeLoginType('phone')" :class="act == 'phone' ? 'fx-1 active': 'fx-1'">SMSLogin</span> -->
         </div>
         <div class="title" v-show="act == 'register'">

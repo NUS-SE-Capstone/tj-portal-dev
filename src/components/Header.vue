@@ -120,14 +120,14 @@ onBeforeMount(async () => {
   courseClass.value = dataCache.getCourseClassDataes
   // 先从store里拿如何没有就请求分类信息获取
   if (courseClass.value.length === 0) {
-    getCourseClassHandle()
+    // getCourseClassHandle()
   }
   if (Object.keys(route.query).length > 0) {
     input.value = route.query.key
   }
   if (await isLogin()) {
     // 查询我正在学习的课程
-    getLearnClassInfoHandle()
+    // getLearnClassInfoHandle()
   }
 })
 // 监听路由 清空搜索框的值
@@ -155,7 +155,7 @@ const getLearnClassInfoHandle = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "学习状态查询出错！",
+          message: "Study Status Error！",
           type: "error",
         });
       });

@@ -49,11 +49,11 @@ const fromData = reactive({
 });
 // 手机号效验
 const verifyPone = (rull, value, callback) => {
-  const reg = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/
+  const reg = /^\d{8}$/
   if (value == '') {
-    callback(new Error('请输入手机号'));
+    callback(new Error('Please input phone'));
   } else if(!reg.test(value)){
-    callback(new Error('请输入正确的手机号'));
+    callback(new Error('Please input right phone'));
   }
   callback()
 }
@@ -63,7 +63,7 @@ const rules = reactive({
     { validator: verifyPone, trigger: "blur" },
   ],
   password: [
-    { required: true, message: "请输入密码", trigger: "blur"},
+    { required: true, message: "please input password", trigger: "blur"},
   ],
   code: [
     { required: true, message: "请输入短信验证码", trigger: "blur"},
@@ -108,7 +108,7 @@ const submitForm = (formEl) => {
 			.then(async res => {
 				if (res.code == 200) {
 					ElMessage({
-              message: '注册成功！请登录',
+              message: 'Register Success！Please Login',
               type: 'success'
           });
           setTimeout(() => {
