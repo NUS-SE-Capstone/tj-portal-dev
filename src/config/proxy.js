@@ -2,7 +2,8 @@ export default {
   development: {
     // 开发环境接口请求
     // host: 'https://tjxt-dev.itheima.net/api',
-    host: 'http://api.tianji.com',
+    // host: 'http://api.tianji.com',
+    host: 'https://86e4-188-253-121-66.ngrok-free.app',
     // 开发环境 cdn 路径
     cdn: '',
   },
