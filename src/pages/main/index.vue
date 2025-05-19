@@ -140,7 +140,7 @@ const getClassCategoryData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "classified req err!！",
+        message: "req category err!",
         type: "error",
       });
     });
@@ -165,7 +165,7 @@ const getFreeClassListData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "classified req err!！",
+        message: "req category err!",
         type: "error",
       });
     });
@@ -181,7 +181,7 @@ const getGoodClassListData = async () => {
       }
     })
     .catch(() => {
-      ElMessage("classified req err!！");
+      ElMessage("req category err!");
     });
 };
 // 新课推荐
@@ -196,7 +196,7 @@ const getNewClassListData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "classified req err!！",
+        message: "req category err!",
         type: "error",
       });
     });

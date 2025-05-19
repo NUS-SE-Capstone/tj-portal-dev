@@ -119,7 +119,7 @@ const getClassCategoryData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "classified req err!！",
+        message: "req category err!",
         type: 'error'
       });
     });
@@ -186,7 +186,7 @@ async function search (){
     })
     .catch(() => {
       ElMessage({
-        message: "classified req err!！",
+        message: "req category err!",
         type: 'error'
       });
     });

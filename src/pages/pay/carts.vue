@@ -3,13 +3,13 @@
   <div class="cartsWrapper">
     <!-- 我的购物车-列表 - start -->
     <div class="container bg-wt marg-bt-20">
-      <div class="title">我的购物车 <span>共{{carts.length}}门课程</span></div>
+      <div class="title">My ShoppingCart <span>{{carts.length}} courses in total</span></div>
       <div class="tab"  v-if="carts.length > 0" >
         <div class="tabHead fx-sb">
-          <div>课程名称</div>
+          <div>Course Name</div>
           <div class="fx">
-            <div class="cal">单价(元)</div>
-            <div class="cal">操作</div>
+            <div class="cal">Price($)</div>
+            <div class="cal">Action</div>
           </div>
         </div>
         <el-checkbox-group
@@ -22,14 +22,14 @@
             <img :src="item.coverUrl" alt="">
             </el-checkbox>
             <span class="name" @click="goDetails(item.courseId)" style="cursor: pointer;">
-              {{item.courseName}}{{item.expired ? "(已失效)" : ""}}
+              {{item.courseName}}{{item.expired ? "(Expired)" : ""}}
             </span>
           </div>
           <div class="fx" style="align-items: center;">
             <div class="cart-price" >
               <div class="cal ft-cl-err" >￥ {{(item.nowPrice / 100).toFixed(2)}}</div>
               <div class="cal ft-cl-err cart-price-div" v-if="item.nowPrice < item.price">
-                比加入时便宜了 ￥ {{((item.price - item.nowPrice) / 100).toFixed(2)}}
+                $ {{((item.price - item.nowPrice) / 100).toFixed(2)}} cheaper than original
               </div>
             </div>
             <div class="cal font-bt2" @click="delHandle(item)">删除</div>
@@ -40,8 +40,8 @@
       <!-- 购物车数据为空 -->
       <div class="empty" v-else>
         <div><img src="@/assets/img_gouwuche.png" width="200" alt=""></div>
-        <div class="desc">看到喜欢的课程，点击【加入购物车】，在这里合并购买</div>
-        <div class="bt" @click="() => $router.push('/search/index')">继续逛逛</div>
+        <div class="desc">When you see interesting courses, click on 'Add to Cart' and make settlement here</div>
+        <div class="bt" @click="() => $router.push('/search/index')">Keep looking</div>
       </div>
     </div>
     <!-- 我的购物车-列表 - end -->

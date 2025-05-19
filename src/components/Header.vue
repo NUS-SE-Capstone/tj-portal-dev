@@ -8,7 +8,7 @@
       <!-- 头部分类-start -->
       <div v-if="route.path != '/main/index' && route.path != '/login' " class="courseClass font-bt2"
            @mouseover="() => isShow = true" @mouseout="() => isShow = false">
-        <i class="iconfont zhy-icon_fenlei_nor"></i> Classification
+        <i class="iconfont zhy-icon_fenlei_nor"></i> Category
       </div>
       <div v-if="route.path != '/main/index' && route.path != '/login' " class="courseClassList" v-show="isShow"
            @mouseover="() => isShow = true" @mouseout="() => isShow = false">
@@ -61,7 +61,7 @@
         </div>
         <!-- 登录注册 - start -->
         <div class="fx-al-ct" v-if="userInfo && userInfo.name">
-          <img class="headIcon" :src="userInfo.icon" :onerror="onerrorImg" alt="">
+          <img class="headIcon" :src="userInfo.icon ?? defaultImage" alt="">
           <div>{{ userInfo.name }}</div>
           <!-- <div class="font-bt2 pd-lf-10" @click="() => $router.push('/login')"> 退出 </div> -->
         </div>
@@ -178,7 +178,7 @@ const getCourseClassHandle = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "classified req err!！",
+          message: "req category err!",
           type: "error",
         });
       });

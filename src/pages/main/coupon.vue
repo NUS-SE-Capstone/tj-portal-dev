@@ -65,7 +65,7 @@ const getCollectableCouponData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "classified req err!！",
+        message: "req category err!",
         type: 'error'
       });
     });
@@ -93,7 +93,7 @@ const getCouponData = async (item) => {
     })
     .catch(() => {
       ElMessage({
-        message: "classified req err!",
+        message: "req category err!",
         type: 'error'
       });
     });

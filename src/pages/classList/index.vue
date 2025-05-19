@@ -80,7 +80,7 @@ const getClassCategoryData = async () => {
       }
     })
     .catch(() => {
-      ElMessage("classified req err!！");
+      ElMessage("req category err!");
     });
 };
 // 精品公开课接口
@@ -94,7 +94,7 @@ const getFreeClassListData = async () => {
       }
     })
     .catch(() => {
-      ElMessage("classified req err!！");
+      ElMessage("req category err!");
     });
 };
 // 新课推荐
@@ -108,7 +108,7 @@ const getNewClassListData = async () => {
       }
     })
     .catch(() => {
-      ElMessage("classified req err!！");
+      ElMessage("req category err!");
     });
 };
 // 精品好课
@@ -122,7 +122,7 @@ const getGoodClassListData = async () => {
       }
     })
     .catch(() => {
-      ElMessage("classified req err!！");
+      ElMessage("req category err!");
     });
 };
 </script>
