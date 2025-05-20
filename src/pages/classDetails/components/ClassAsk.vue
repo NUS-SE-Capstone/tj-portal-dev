@@ -3,10 +3,10 @@
   <div class="classAsk bg-wt marg-bt-20">
     <div class="tabLab fx-sb">
       <div class="lable">
-        <span @click="askCheck(false)" :class="{act:!params.onlyMine,'bt-grey2': params.onlyMine}" class="marg-rt-20 ">全部问答</span>
-        <span @click="askCheck(true)" :class="{act:params.onlyMine,'bt-grey2': !params.onlyMine}">我的问答</span>
+        <span @click="askCheck(false)" :class="{act:!params.onlyMine,'bt-grey2': params.onlyMine}" class="marg-rt-20 ">All QA</span>
+        <span @click="askCheck(true)" :class="{act:params.onlyMine,'bt-grey2': !params.onlyMine}">My QA</span>
       </div> 
-      <div class="ask"><span @click="() => $router.push({path: '/ask', query: {id: $props.id, title: $props.title}})" class="bt bt-round ft-14">提问</span></div>
+      <div class="ask"><span @click="() => $router.push({path: '/ask', query: {id: $props.id, title: $props.title}})" class="bt bt-round ft-14">Ask</span></div>
     </div>
     <AskChapterItems :data="chapterData" @checkCahpter="checkCahpter"></AskChapterItems>
     <div class="askCont">
@@ -14,22 +14,22 @@
         <div class="userInfo fx">
           <img v-if="item.userIcon" :src="item.userIcon" alt="" srcset="">
           <img v-else src="/src/assets/anonymity.png" alt="" srcset="">
-          {{item.userName || "匿名用户"}}
+          {{item.userName || "anonymous"}}
         </div>
         <div class="ask">
           <div class="ft-16">{{item.title}}</div>
           <div class="font-bt2" @click="goDetails(item)" v-if="item.latestReplyContent">
-            最新【{{item.latestReplyUser}}】的回答
+            latest [{{item.latestReplyUser}}] answer
           </div>
         </div>
         <div class="time fx-sb">
           <div>{{item.createTime}}</div>
           <div class="actBut">
             <span class="font-bt2 marg-rt-20" @click="() => $router.push({path:'/ask', query:{id:$props.id,queryId:item.id,type:'edit',title:item.title}})" v-if="userInfo.id == item.userId">
-              <i class="iconfont zhy-a-icon_kaoshi2x"></i> 编辑</span>
+              <i class="iconfont zhy-a-icon_kaoshi2x"></i> Edit</span>
             <span class="font-bt2 marg-rt-20" @click="delQuestionsHandle(item.id)" v-if="userInfo.id == item.userId">
-              <i class="iconfont zhy-a-btn_delete_nor2x"></i> 删除 </span>
-            <span class="font-bt2" @click="goDetails(item)"><i class="iconfont zhy-a-btn_pinglun_nor2x"></i> 回答 {{item.answerTimes}}</span>
+              <i class="iconfont zhy-a-btn_delete_nor2x"></i> Delete </span>
+            <span class="font-bt2" @click="goDetails(item)"><i class="iconfont zhy-a-btn_pinglun_nor2x"></i> Answer {{item.answerTimes}}</span>
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@ const getAskListsDataes = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "问答列表数据请求出错！",
+        message: "req QA list err",
         type: 'error'
       });
     });
@@ -138,7 +138,7 @@ await delQuestions(id)
       if (res.code == 200) {
         // 删除成功
         ElMessage({
-          message:'问题删除成功！',
+          message:'Delete Question success',
           type: 'success'
         });
         getAskListsDataes()
@@ -151,7 +151,7 @@ await delQuestions(id)
     })
     .catch(() => {
       ElMessage({
-        message: "问题删除请求出错！",
+        message: "req delete question err",
         type: 'error'
       });
     });
@@ -169,7 +169,7 @@ const getClassChapterData = async (id) => {
   await getClassChapter(id)
     .then((res) => {
       if (res.code == 200) {
-        chapterData.value = [{id:'', index: '全部'},...res.data]
+        chapterData.value = [{id:'', index: 'All'},...res.data]
       } else {
         ElMessage({
           message:res.data.msg,
@@ -179,7 +179,7 @@ const getClassChapterData = async (id) => {
     })
     .catch(() => {
       ElMessage({
-        message: "课程章节数据请求出错！",
+        message: "req chapter data err",
         type: 'error'
       });
     });

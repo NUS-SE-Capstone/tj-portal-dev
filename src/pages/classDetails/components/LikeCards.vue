@@ -1,7 +1,7 @@
 <!-- 猜你喜欢模块 -->
 <template>
     <div class="like bg-wt">
-        <div class="title">猜你喜欢</div>
+        <div class="title">Recommend</div>
         <div class="likeCards">
         <ClassCards class="marg-bt-20" type="like" style="width:100%" v-for="(item, index) in data" :data="item" :key="index"></ClassCards>
         </div>

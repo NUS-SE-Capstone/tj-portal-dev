@@ -1,11 +1,11 @@
 <!-- 课程介绍 -->
 <template>
   <div class="classAbout">
-    <div class="title">课程简介</div>
+    <div class="title">Course Introduce</div>
     <div class="marg-bt-20">{{baseDetailsData.introduce}}</div>
-    <div class="title">适学人群</div>
+    <div class="title">For the crowd</div>
     <div class="marg-bt-20">{{baseDetailsData.usePeople}}</div>
-    <div class="title">授课老师</div>
+    <div class="title">Teacher</div>
     <div class="classTeacher">
       <div class="navigat">
         <div class="prev"><span class="iconfont zhy-a-shouqi2x"></span></div>
@@ -43,7 +43,7 @@
           </swiper-slide>
         </swiper>
     </div>
-    <div class="title">课程详情</div>
+    <div class="title">Course Details</div>
     <div class="marg-bt-20">{{baseDetailsData.detail}}</div>
   </div>
 </template>

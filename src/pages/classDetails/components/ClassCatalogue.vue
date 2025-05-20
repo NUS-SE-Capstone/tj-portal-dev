@@ -14,7 +14,7 @@
               {{it.index}}、{{it.name}}
             </div>
             <div class="time">
-              <span v-if="it.trailer" class="trailer-font">试看</span>
+              <span v-if="it.trailer" class="trailer-font">Try</span>
               {{(it.mediaDuration/60).toFixed(0)+'.'+it.mediaDuration % 60}}
             </div>
           </div>
@@ -52,7 +52,7 @@ const toPlayPage = (courseId,chapterId, sectionId) => {
 }
 const playHandle = (courseId, val) => {
   if(!val.trailer && !props.isSignUp){
-    ElMessage('该课程章节不支持试看， 请购买后播放')
+    ElMessage('This section disable trial watch, please buy')
     return
   }
   router.push({path: '/learning/index', query: {id: courseId, sectionId: val.id}})

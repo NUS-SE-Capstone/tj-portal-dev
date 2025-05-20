@@ -12,7 +12,7 @@
           <img :src="item.coverUrl" alt=""> 
           <span>{{item.name || item.courseName}}</span>
         </div>
-        <div class="cal ft-cl-err" >￥ {{((item.nowPrice || item.price) / 100).toFixed(2)}}</div>
+        <div class="cal ft-cl-err" >$ {{((item.nowPrice || item.price) / 100).toFixed(2)}}</div>
       </div>
     </div>
     <div class="settiementInfo">
@@ -30,11 +30,11 @@
         </div>
         <div v-else class="noData"> 优惠券： 暂无可用优惠券</div>
         <div class="price" style="width: 195px">
-          <div class="fx-sb"><span>订单总价：</span> <span>￥ {{amountConversion(orderInfo.totalAmount)}}</span></div>
-          <div class="fx-sb"><span>优惠金额：</span>  <span>￥ {{amountConversion(discountAmount) || 0}}</span></div>
+          <div class="fx-sb"><span>订单总价：</span> <span>$ {{amountConversion(orderInfo.totalAmount)}}</span></div>
+          <div class="fx-sb"><span>优惠金额：</span>  <span>$ {{amountConversion(discountAmount) || 0}}</span></div>
         </div>
       </div>
-      <div class="paid"><span>实付金额：</span><span class="ft-cl-err"> ￥ {{price}}</span></div>
+      <div class="paid"><span>实付金额：</span><span class="ft-cl-err"> $ {{price}}</span></div>
       <div @click="orderHandle"><span class="bt bt-red">去结算</span></div>
     </div>
   </div>

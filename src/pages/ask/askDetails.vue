@@ -9,7 +9,7 @@
               <div class="userInfo">
                 <img v-if="askInfo.userIcon" :src="askInfo.userIcon" alt="">
                 <img v-else src="/src/assets/anonymity.png" alt="">
-                {{askInfo.userName || '匿名'}}
+                {{askInfo.userName || 'anonymous'}}
               </div>
               <div class="askInfo">
                 <div class="ft-20 ft-wt-600">{{askInfo.title}}</div>
@@ -20,15 +20,15 @@
             <!-- 问题主体- end -->
             <!-- 回答题主- start -->
             <div class="answerCont bg-wt marg-bt-20">
-              <div class="ft-20 ft-wt-600 marg-bt-20">我要回答</div>
+              <div class="ft-20 ft-wt-600 marg-bt-20">Answer</div>
               <div class="answer fx">
                 <img :src="store.getUserInfo.icon" alt="" srcset="">
                 <div class="fx-1">
-                  <el-input v-model="description" rows="11" type="textarea" @input="ruleshandle" maxlength="500" show-word-limit placeholder="请发表高见" />
+                  <el-input v-model="description" rows="11" type="textarea" @input="ruleshandle" maxlength="500" show-word-limit placeholder="please input" />
                   <div class="fx-sb fx-al-ct">
-                    <div><el-checkbox v-model="anonymity" label="匿名提问" size="large" /></div>
+                    <div><el-checkbox v-model="anonymity" label="anonymous" size="large" /></div>
                     <div class="subCont">
-                      <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="answerHandle('first')">回答</span>
+                      <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="answerHandle('first')">Answer</span>
                       </div>
                   </div> 
                 </div>
@@ -37,50 +37,50 @@
             <!-- 回答题主- end -->
             <!-- 全部回答- start -->
             <div class="answerCont bg-wt marg-bt-20">
-              <div class="ft-20 ft-wt-600 marg-bt-20">全部回答({{count}})</div>
+              <div class="ft-20 ft-wt-600 marg-bt-20">All Answers ({{count}})</div>
               <div class="answerItems">
                 <div class="items" v-for="item in questionData" :key="item.id">
                   <div class="fx-al-ct">
                     <img class="img" v-if="item.userIcon" :src="item.userIcon" alt="">
                     <img class="img" v-else src="/src/assets/anonymity.png" alt="">
-                    <span class="ft-cl-des">{{item.userName || '匿名'}}</span>
+                    <span class="ft-cl-des">{{item.userName || 'anonymous'}}</span>
                   </div>
                   <div class="cont">
                     <div class="marg-bt-10">{{item.content}}</div>
                     <div class="fx-sb">
                       <div class="ft-cl-des">{{item.createTime}}</div>
                       <div>
-                        <span class="marg-rt-10 cur-pt" @click="openReply(item)"> <i class="iconfont zhy-a-btn_pinglun_nor2x"></i> 评论({{item.replyTimes}}) </span>
-                        <span :class="{'cur-pt':true, activeLiked: item.liked}" @click="likedHandle(item)"> <i class="iconfont zhy-a-btn_zan_nor2x"></i> 点赞( {{item.likedTimes}})</span>
+                        <span class="marg-rt-10 cur-pt" @click="openReply(item)"> <i class="iconfont zhy-a-btn_pinglun_nor2x"></i> Reply ({{item.replyTimes}}) </span>
+                        <span :class="{'cur-pt':true, activeLiked: item.liked}" @click="likedHandle(item)"> <i class="iconfont zhy-a-btn_zan_nor2x"></i> Like( {{item.likedTimes}})</span>
                       </div>
                     </div>
                   </div>
                   <!-- 插入回复框的位置 -->
-                  <component :is="openReplyFormId == item.id ? ReplayForm : null" :key="item.id" :name="item.userName || '匿名'" :askInfoId="askInfo.id" @commentHandle="commentHandle"></component>
+                  <component :is="openReplyFormId == item.id ? ReplayForm : null" :key="item.id" :name="item.userName || 'anonymous'" :askInfoId="askInfo.id" @commentHandle="commentHandle"></component>
                   <!-- 回复列表 -->
                   <div class="replyCont" v-show="replyData && isReplay == item.id">
                     <div class="items" v-for="it in replyData" :key="it.id">
                       <div class="fx-al-ct">
                         <img class="img" v-if="it.userIcon" :src="it.userIcon" alt="">
                         <img class="img" v-else src="/src/assets/anonymity.png" alt="">
-                        <span class="ft-cl-des"> {{it.userName || '匿名'}} 回复 {{it.targetUserName || "匿名用户"}} </span>
+                        <span class="ft-cl-des"> {{it.userName || 'anonymous'}} reply {{it.targetUserName || "anonymous"}} </span>
                       </div>
                       <div class="cont">
                         <div class="marg-bt-10">{{it.content}}</div>
                         <div class="fx-sb">
                           <div class="ft-cl-des">{{it.createTime}}</div>
                           <div>
-                            <span class="marg-rt-10 cur-pt" @click="replayHandle(it, 'targe')" > <i class="iconfont zhy-a-btn_pinglun_nor2x"></i> 回复</span>
-                            <span :class="{'cur-pt':true, activeLiked: it.liked}" @click="likedHandle(it)"> <i class="iconfont zhy-a-btn_zan_nor2x"></i> 点赞 ({{it.likedTimes}})</span>
+                            <span class="marg-rt-10 cur-pt" @click="replayHandle(it, 'targe')" > <i class="iconfont zhy-a-btn_pinglun_nor2x"></i> Reply</span>
+                            <span :class="{'cur-pt':true, activeLiked: it.liked}" @click="likedHandle(it)"> <i class="iconfont zhy-a-btn_zan_nor2x"></i> Like ({{it.likedTimes}})</span>
                           </div>
                         </div>
                       </div>
                       <!-- 插入回复框的位置 -->
-                      <component :is="openReplyFormId == it.id ? ReplayForm : null" :name="it.userName || '匿名'" :id = "it.userId" :askInfoId="askInfo.id"  @commentHandle="commentHandle"></component>
+                      <component :is="openReplyFormId == it.id ? ReplayForm : null" :name="it.userName || 'anonymous'" :id = "it.userId" :askInfoId="askInfo.id"  @commentHandle="commentHandle"></component>
                     <!-- 回复列表 -->
                     </div>
                     <div @click="() => {dialogTableVisible = true}" class="fx-ct ft-14 ft-cl-des cur-pt" v-if="replyCont > 5">
-                      点击查看全部{{replyCont}}条回复
+                      view all {{replyCont}} answers
                     </div>
                   </div>
                 </div>
@@ -94,13 +94,13 @@
           <RelatedQuestions :id="route.query.detailsId" :title="route.query.name"></RelatedQuestions>
       </div>
     </div>
-    <el-dialog v-model="dialogTableVisible" :title="`全部回复(${replyCont})`" width="80%" top="5vh" >
+    <el-dialog v-model="dialogTableVisible" :title="`All Reply(${replyCont})`" width="80%" top="5vh" >
       <div class="dialogReplyCont" v-infinite-scroll="load" style="overflow: auto" :infinite-scroll-disabled="disabled">
         <div class="items" v-for="it in replyData" :key="`ss${it.id}`">
           <div class="fx-al-ct">
             <img class="img" v-if="it.userIcon" :src="item.userIcon" alt="">
             <img class="img" v-else src="/src/assets/anonymity.png" alt="">
-            <span class="ft-cl-des"> {{it.userName || '匿名'}} 回复 {{it.targetUserName || "匿名用户"}} </span>
+            <span class="ft-cl-des"> {{it.userName || 'anonymous'}} 回复 {{it.targetUserName || "anonymous"}} </span>
           </div>
           <div class="cont">
             <div class="marg-bt-10">{{it.content}}</div>
@@ -113,7 +113,7 @@
             </div>
           </div>
           <!-- 插入回复框的位置 -->
-          <component :is="openReplyFormId == it.id ? ReplayForm : null" :key="it.id" :name="it.userName || '匿名'" :id = "it.userId" :askInfoId="askInfo.id" @commentHandle="commentHandle"></component>
+          <component :is="openReplyFormId == it.id ? ReplayForm : null" :key="it.id" :name="it.userName || 'anonymous'" :id = "it.userId" :askInfoId="askInfo.id" @commentHandle="commentHandle"></component>
         <!-- 回复列表 -->
         </div>
          <p class="fx-ct ft-14 ft-cl-des" v-if="replayloading">Loading...</p>

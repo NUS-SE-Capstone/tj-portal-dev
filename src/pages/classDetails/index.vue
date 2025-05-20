@@ -11,48 +11,48 @@
               <div class="title">{{baseDetailsData.name}}</div>
               <div class="item fx">
                 <div class="card">
-                  <div class="tit">课程数</div>
-                  <div class="info">{{baseDetailsData.cataTotalNum}}节</div>
+                  <div class="tit">Course Num</div>
+                  <div class="info">{{baseDetailsData.cataTotalNum}} Sections</div>
                 </div>
                 <div class="card">
-                  <div class="tit">有效期</div>
-                  <div class="info">{{baseDetailsData.validDuration > 99 ? '永久有效' : `${baseDetailsData.validDuration}月`}}</div>
+                  <div class="tit">Available</div>
+                  <div class="info">{{baseDetailsData.validDuration > 99 ? 'Permanent' : `${baseDetailsData.validDuration} Months`}}</div>
                 </div>
                 <div class="card bd-non">
-                  <div class="tit">评分</div>
+                  <div class="tit">Score</div>
                   <div class="info">{{baseDetailsData.score/10}}</div>
                 </div>
               </div>
               <div class="fx">
-                <div @click="collectionHandle" class="bt-wt bt-round marg-rt-15 ft-14" :class="{isCollection:isCollection}"> <i :class="{iconfont:true, 'zhy-btn_shoucang':!isCollection, 'zhy-btn_yishoucang':isCollection}"></i> 收藏</div>
-                <div class="bt-wt bt-round ft-14"><weixin class="wx"></weixin> 分享</div>
+                <div @click="collectionHandle" class="bt-wt bt-round marg-rt-15 ft-14" :class="{isCollection:isCollection}"> <i :class="{iconfont:true, 'zhy-btn_shoucang':!isCollection, 'zhy-btn_yishoucang':isCollection}"></i> Collect</div>
+                <!-- <div class="bt-wt bt-round ft-14"><weixin class="wx"></weixin> Share</div> -->
               </div>
           </div>
         </div>
         <div v-if="baseDetailsData">
           <div class="buyCont fx-sb" v-if="baseDetailsData.price != '0'" >
           <div class="fx-ct">
-            <span class="price">￥</span>
+            <span class="price">$</span>
             <span class="price">{{(baseDetailsData.price / 100).toFixed(2) }}</span>
-            <span class="desc">课前随时退 · 售后有保障</span> 
+            <span class="desc">Refund at any time before class, Guarantee after-sales service</span> 
           </div>
           <div class="buy" v-if="!isSignUp">
-            <span class="bt-red1 bt-round marg-rt-20" @click="addCarts()">加入购物车</span>
-            <span class="bt-red bt-round" @click="payHandle()" >立即购买</span>
+            <span class="bt-red1 bt-round marg-rt-20" @click="addCarts()">Add to Cart</span>
+            <span class="bt-red bt-round" @click="payHandle()" >Buy Now</span>
           </div>
           <div class="buy" v-else @click="goLearning">
-            <span class="bt-red bt-round">马上学习</span>
+            <span class="bt-red bt-round">Learn Now</span>
           </div>
         </div>
         <div class="buyCont fx-sb" v-else >
           <div class="fx-ct">
-            <span class="price">免费</span>
+            <span class="price">Free</span>
           </div>
           <div class="buy" v-if="!isSignUp" @click="signUpHandle">
-            <span class="bt-red bt-round">立即报名</span>
+            <span class="bt-red bt-round">Sign Up</span>
           </div>
           <div class="buy" v-else @click="goLearning">
-            <span class="bt-red bt-round">马上学习</span>
+            <span class="bt-red bt-round">Learn Now</span>
           </div>
         </div>
         </div>
@@ -88,6 +88,7 @@
 <script setup>
 
 /** 数据导入 **/
+import defaultCover from '@/assets/default-cover.png'
 import { computed, onMounted, ref } from "vue";
 import { ElMessage,ElMessageBox } from "element-plus";
 import { getClassDetails, getClassTeachers, getClassList } from "@/api/classDetails.js";
@@ -122,8 +123,8 @@ const baseDetailsData = ref({})
 const baseClassTeacher = ref([])
 
 // table切换数据 - 静态数据
-const logData = [{id: 1, name: '课程介绍'}, {id: 2, name: '课程目录'},{id: 3, name: '问答'},{id: 4, name: '笔记'}, {id: 5, name: '用户评价'}]
-const noLogData = [{id: 1, name: '课程介绍'}, {id: 2, name: '课程目录'}, {id: 5, name: '用户评价'}]
+const logData = [{id: 1, name: 'Info'}, {id: 2, name: 'catalogue'},{id: 3, name: 'QA'},{id: 4, name: 'Note'}, {id: 5, name: 'Comment'}]
+const noLogData = [{id: 1, name: 'Info'}, {id: 2, name: 'catalogue'}, {id: 5, name: 'Comment'}]
 const tableBar = computed(() => {
   return isLogin() && isSignUp.value ? logData : noLogData
 })
@@ -138,26 +139,12 @@ const LikeData = [
     duration: 444,
     icon: "sit enim sunt",
     id: 46000019721003770,
-    name: "配源码+笔记）玩转MySQL数据库之终极教程",
+    name: "SQL - Final Tutorial!",
     price: 64540,
     sections: 45,
     sold: 234,
-    teacher: "李老师"
+    teacher: "Mr. Li"
   },
-  {
-    sold: 234, 
-    icon: "sit enim sunt", 
-    sections: 45,
-    coverUrl: "http://img-qn-3.51miz.com/preview/muban/00/00/50/44/M-504460-F3103C10.jpg!/quality/90/unsharp/true/compress/true/fw/640/clip/640x500a0a0",
-    duration: 444,
-    icon: "sit enim sunt",
-    id: 46000019721003770,
-    name: "配源码+笔记）玩转MySQL数据库之终极教程",
-    price: 64540,
-    sections: 45,
-    sold: 234,
-    teacher: "李老师"
-  }
 ]
 
 const isCollection = ref(false);
@@ -167,10 +154,10 @@ const actId = ref(1)
 
 // 常见问题 - 静态数据
 const askData = [
-  {ask:'如何查看已购课程？', answer: '请用购课账号登录，点击【我的学习】进入。'},
-  {ask:'课程购买后可以更换吗？', answer: '如需更换课程请咨询客服为您确认是否可以更换。'},
-  {ask:'无法登录怎么办？', answer: '请更换不同浏览器。'},
-  {ask:'课程过期了怎么办？', answer: '课程过期无法观看了哦，请在有效期内进行观看课程。'},
+  {ask:'View bought courses?', answer: 'Login in, click "learning center"'},
+  {ask:'Change bought courses?', answer: 'Contact customer service'},
+  {ask:'Can not login?', answer: 'Change your browser'},
+  {ask:'Course exipre?', answer: 'Can\'t learn expired course. Please learn in available time.'},
 ]
 // 课程目录
 const classListData = ref([])
@@ -208,6 +195,9 @@ const getClassDetailsData = async () => {
     .then((res) => {
       if (res.code === 200) {
         baseDetailsData.value = res.data
+        if(baseDetailsData.value.coverUrl == '/img-tx/default-cover-url.jpg') {
+          baseDetailsData.value.coverUrl = defaultCover
+        }
       } else {
         ElMessage({
           message:res.data.msg,
@@ -217,7 +207,7 @@ const getClassDetailsData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "请求出错！",
+        message: "err req!",
         type: 'error'
       });
     });
@@ -256,7 +246,7 @@ const getClassTeachersData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "请求出错！",
+        message: "err req!",
         type: 'error'
       });
     });
@@ -277,7 +267,7 @@ const getClassListData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "课程目录数据请求出错！",
+        message: "req course catalogue err!",
         type: 'error'
       });
     });
@@ -314,7 +304,7 @@ const signUpHandle = async () => {
   .then((res) => {
     if (res.code === 200) {
       ElMessage({
-        message:'报名成功',
+        message:'sign up success',
         type: 'success'
       });
       isSignUp.value = true
@@ -327,7 +317,7 @@ const signUpHandle = async () => {
   })
   .catch(() => {
     ElMessage({
-      message: "报名失败，请联系管理员",
+      message: "sign up fail. contact admin.",
       type: 'error'
     });
   });
@@ -353,7 +343,7 @@ const getCourseLearningData = async () => {
   })
   .catch(() => {
     ElMessage({
-      message: "用户学习信息数据请求出错！",
+      message: "query user learning info err!",
       type: 'error'
     });
   });
@@ -371,11 +361,11 @@ const payHandle = () => {
 const validation = () => {
   if ( !isLogin()) {
     ElMessageBox.confirm(
-        `您还没有登录 请先去登录`,
-        '确认登录',
+        `please login`,
+        'confirm to login',
         {
-          confirmButtonText: '登录购买',
-          cancelButtonText: '继续浏览',
+          confirmButtonText: 'login to buy',
+          cancelButtonText: 'keep browsing',
           type: 'warning',
         }
       )
@@ -396,7 +386,7 @@ const addCarts = () => {
   .then((res) => {
     if (res.code === 200) {
      ElMessage({
-        message:'已加入购物车',
+        message:'already add to cart',
         type: 'success'
       });
     } else {
@@ -408,7 +398,7 @@ const addCarts = () => {
   })
   .catch(() => {
     ElMessage({
-      message: "添加购物车请求出错！",
+      message: "req add cart err!",
       type: 'error'
     });
   });

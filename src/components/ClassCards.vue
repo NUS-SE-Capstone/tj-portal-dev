@@ -4,33 +4,34 @@
     <div class="image">
        <!-- 由于暂时不做直播 所以录播先去掉 -->
         <!-- <span class="label">录播</span> -->
-        <img :src="data.coverUrl" alt="" />
+        <img :src="data.coverUrl == 'default-cover-url.jpg' ? defaultCover : data.coverUrl" alt="" />
     </div>
     <div class="pd-10">
         <div class="title marg-bt-10 ft-14" v-html="data.name"></div>
-        <div class="ft-cl-des" v-if="type == 'default' || type == 'search'"><span>讲师：</span> {{data.teacher}}</div>
-        <div class="ft-cl-des" v-if="type == 'default'"><span>共</span> {{data.sections}} <span>节</span></div>
+        <div class="ft-cl-des" v-if="type == 'default' || type == 'search'"><span>Teacher:</span> {{data.teacher}}</div>
+        <div class="ft-cl-des" v-if="type == 'default'"><span></span> {{data.sections}} <span> sectioins</span></div>
         <div class="ft-cl-des fx-sb" v-if="type == 'default'">
-          <span>有{{data.sold}}人在学习</span>
-          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">￥ {{(data.price/100).toFixed(2)}}</span>
-          <span v-else class="ft-16 ft-cl-err">免费</span> 
+          <span>{{data.sold}} people learning</span>
+          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(data.price/100).toFixed(2)}}</span>
+          <span v-else class="ft-16 ft-cl-err">Free</span> 
         </div>
         <div class="ft-cl-des fx-sb" v-if="type == 'search'">
-          <span>共{{data.sections || 0}}节 <em>.</em> 有{{data.sold}}人在学习</span> 
-          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">￥ {{(Number(data.price)/100).toFixed(2)}}</span>
-          <span v-else class="ft-16 ft-cl-err">免费</span> 
+          <span>{{data.sections || 0}} sections <em>.</em>{{data.sold}} people learning</span> 
+          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(Number(data.price)/100).toFixed(2)}}</span>
+          <span v-else class="ft-16 ft-cl-err">Free</span> 
         </div>
-        <div class="ft-cl-des" v-if="type == 'like'"><span>评分：</span> 4.9</div>
+        <div class="ft-cl-des" v-if="type == 'like'"><span>Score:</span> 4.9</div>
         <div class="ft-cl-des fx-sb" v-if="type == 'like'">
-          <span>{{data.sections}} 次播放 </span> 
-          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">￥{{(Number(data.price)/100).toFixed(2)}}</span> 
-          <span v-else class="ft-16 ft-cl-err">免费</span> 
+          <span>{{data.sections}} plays </span> 
+          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(Number(data.price)/100).toFixed(2)}}</span> 
+          <span v-else class="ft-16 ft-cl-err">Free</span> 
         </div>
     </div>
     
   </div>
 </template>
 <script setup>
+import defaultCover from '@/assets/default-cover.png'
 import router from '../router';
 const props = defineProps({
   data:{

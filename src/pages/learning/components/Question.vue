@@ -5,7 +5,7 @@
       <div class="askLists" v-for="item in askListsDataes">
         <div class="userInfo fx ">
           <img :src="item.userIcon" :onerror="onerrorImg(item)" alt="" srcset="">
-          {{item.userName  || "匿名"}}
+          {{item.userName  || "anonymous"}}
         </div>
         <div class="ask">
           <div class="tit ft-14">{{item.title}}</div>
@@ -26,7 +26,7 @@
       <el-input class="title" v-model.number="quest.title" maxlength="64" @input="ruleshandle" show-word-limit placeholder="please input"/>
       <el-input v-model="quest.description" rows="4" resize="none" type="textarea" @input="ruleshandle" maxlength="500" show-word-limit placeholder="please input" />
       <div class="fx-sb fx-al-ct" style="margin-top: 4px;">
-        <div><el-checkbox v-model="quest.anonymity" label="匿名提问" size="large" /></div>
+        <div><el-checkbox v-model="quest.anonymity" label="anonymous" size="large" /></div>
         <div class="subCont">
           <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="submitForm()">提问</span>
         </div>

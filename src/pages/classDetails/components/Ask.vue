@@ -1,7 +1,7 @@
 <!-- 常见问题模块 -->
 <template>
   <div class="ask bg-wt marg-bt-20">
-    <div class="title">常见问题</div>
+    <div class="title">Normal Questions</div>
     <div class="askCont">
       <li v-for="(item, index) in data" :key="index">{{item.ask}} <span>{{item.answer}}</span></li>
     </div>

@@ -27,7 +27,7 @@
           </div>
           <div class="fx" style="align-items: center;">
             <div class="cart-price" >
-              <div class="cal ft-cl-err" >￥ {{(item.nowPrice / 100).toFixed(2)}}</div>
+              <div class="cal ft-cl-err" >$ {{(item.nowPrice / 100).toFixed(2)}}</div>
               <div class="cal ft-cl-err cart-price-div" v-if="item.nowPrice < item.price">
                 $ {{((item.price - item.nowPrice) / 100).toFixed(2)}} cheaper than original
               </div>
@@ -59,7 +59,7 @@
       </div>
       <div class="count ft-14 fx fx-1">
         <div>
-          <p>合计： <span class="pric">￥ {{ (totalAmount / 100).toFixed(2)}}</span></p>
+          <p>合计： <span class="pric">$ {{ (totalAmount / 100).toFixed(2)}}</span></p>
           <p>若购买享有优惠，相应金额将在订单结算页面减扣</p>
         </div>
         <div @click="goSettlement" class="bt bt-red">去下单</div>

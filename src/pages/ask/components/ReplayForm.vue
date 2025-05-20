@@ -15,7 +15,7 @@
         />
         <div class="fx-sb fx-al-ct">
           <div>
-            <el-checkbox v-model="anonymity" label="匿名" size="large" />
+            <el-checkbox v-model="anonymity" label="anonymous" size="large" />
           </div>
           <div class="subCont">
             <span

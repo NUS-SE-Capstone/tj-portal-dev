@@ -45,7 +45,7 @@
       </div>
       <div class="info">
         <div><span>订单总价：</span>
-          <span class="pirc">￥ {{ orderDetails && amountConversion(orderDetails.totalAmount) || 0 }}</span></div>
+          <span class="pirc">$ {{ orderDetails && amountConversion(orderDetails.totalAmount) || 0 }}</span></div>
         <div class="fx">
           <span>优惠券：</span>
           <span v-if="orderDetails && orderDetails.couponRule.length" class="ruleBox">
@@ -56,9 +56,9 @@
           <span v-else class="pirc">无</span>
         </div>
         <div><span>优惠金额：</span><span
-            class="pirc">￥ {{ orderDetails && amountConversion(orderDetails.discountAmount) || 0 }}</span></div>
+            class="pirc">$ {{ orderDetails && amountConversion(orderDetails.discountAmount) || 0 }}</span></div>
         <div><span>实付金额：</span><span
-            class="pirc red">￥ {{ orderDetails && amountConversion(orderDetails.realAmount) || 0 }}</span></div>
+            class="pirc red">$ {{ orderDetails && amountConversion(orderDetails.realAmount) || 0 }}</span></div>
       </div>
     </div>
     <!-- 申请退款 - start -->

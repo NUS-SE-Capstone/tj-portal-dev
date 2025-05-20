@@ -61,7 +61,7 @@ const route = useRoute()
 const store = dataCacheStore()
 
 const tableBar = [
-  {id: 0, name: '全部'},
+  {id: 0, name: 'All'},
   {id: 1, name: '待支付'},
   {id: 2, name: '已支付'},
   {id: 3, name: '已关闭'},

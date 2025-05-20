@@ -12,7 +12,7 @@
     <!-- 直播公开课 -->
     <div class="bg-wt pd-tp-30">
       <OpenClass
-        title="直播公开课"
+        title="Free Courses"
         class="container bg-wt"
         :data="freeClassData"
       ></OpenClass>
@@ -20,7 +20,7 @@
     <!-- 新课推荐 -->
     <div class="pd-tp-30">
       <OpenClass
-        title="新课推荐"
+        title="New Recommend"
         class="container"
         :data="freeClassData"
       ></OpenClass>
@@ -32,7 +32,7 @@
     <!-- 精品好课 -->
     <div class="bg-wt pd-tp-30">
       <OpenClass
-        title="精品好课"
+        title="Good Courses"
         class="container bg-wt"
         :data="freeClassData"
       ></OpenClass>

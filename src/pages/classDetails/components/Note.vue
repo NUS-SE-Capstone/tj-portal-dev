@@ -3,8 +3,8 @@
   <div class="note bg-wt marg-bt-20">
     <div class="tabLab fx-sb">
       <div class="lable">
-        <span @click="askCheck('all')" :class="{act:askType == 'all'}" class="marg-rt-20">全部笔记</span> 
-        <span @click="askCheck('my')" :class="{act:askType == 'my'}">我的笔记</span>
+        <span @click="askCheck('all')" :class="{act:askType == 'all'}" class="marg-rt-20">All Notes</span> 
+        <span @click="askCheck('my')" :class="{act:askType == 'my'}">My Notes</span>
       </div> 
     </div>
     <AskChapterItems :data="chapterData" @checkCahpter="checkCahpter"></AskChapterItems>
@@ -21,9 +21,9 @@
           <div>{{item.createTime}}</div>
           <div class="actBut">
             <!-- <span class="marg-rt-20" v-if="userInfo.id == item.author.id"><i class="iconfont zhy-a-icon_kaoshi2x"></i> 编辑</span> -->
-            <span @click="delNoteHandle(item.id)" class="marg-rt-20" v-if="userInfo.id == item.authorId"><i class="iconfont zhy-a-btn_delete_nor2x" ></i> 删除 </span>
-            <span @click="gathersHandle(item)" class="marg-rt-20" :class="{activeLiked:false}" v-if="userInfo.id != item.authorId "><i class="iconfont zhy-a-btn_caiji_nor2x" styel="font-size: 22px;" ></i> {{item.isGathered ? '已采集' : '采集'}}</span>
-            <span @click="likedHandle(item)" :class="{activeLiked:item.liked}" ><i class="iconfont zhy-a-btn_zan_nor2x"></i> 点赞 {{item.likedTimes || 0}}</span>
+            <span @click="delNoteHandle(item.id)" class="marg-rt-20" v-if="userInfo.id == item.authorId"><i class="iconfont zhy-a-btn_delete_nor2x" ></i> Delete </span>
+            <span @click="gathersHandle(item)" class="marg-rt-20" :class="{activeLiked:false}" v-if="userInfo.id != item.authorId "><i class="iconfont zhy-a-btn_caiji_nor2x" styel="font-size: 22px;" ></i> {{item.isGathered ? 'Gathered' : 'Gather'}}</span>
+            <span @click="likedHandle(item)" :class="{activeLiked:item.liked}" ><i class="iconfont zhy-a-btn_zan_nor2x"></i> Like {{item.likedTimes || 0}}</span>
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@ const getAskListsDataes = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "笔记列表数据请求出错！",
+        message: "req note list err",
         type: 'error'
       });
     });
@@ -130,7 +130,7 @@ await delNote(id)
       if (res.code == 200) {
         // 删除成功
         ElMessage({
-          message:'笔记删除成功！',
+          message:'del note success',
           type: 'success'
         });
         getAskListsDataes()
@@ -143,7 +143,7 @@ await delNote(id)
     })
     .catch(() => {
       ElMessage({
-        message: "课程章节数据请求出错！",
+        message: "del note err",
         type: 'error'
       });
     });
@@ -168,7 +168,7 @@ await notesGathers(item.id)
     })
     .catch(() => {
       ElMessage({
-        message: "采集笔记请求出错！",
+        message: "gather notes err!",
         type: 'error'
       });
     });
@@ -190,7 +190,7 @@ await unNotesGathers(item.id)
     })
     .catch(() => {
       ElMessage({
-        message: "采集笔记请求出错！",
+        message: "cancel gather notes err!",
         type: 'error'
       });
     });
@@ -203,7 +203,7 @@ const getClassChapterData = async (id) => {
   await getClassChapter(id)
     .then((res) => {
       if (res.code == 200) {
-        chapterData.value = [{id:'all', index: '全部'},...res.data]
+        chapterData.value = [{id:'all', index: 'All'},...res.data]
       } else {
         ElMessage({
           message:res.data.msg,
@@ -213,7 +213,7 @@ const getClassChapterData = async (id) => {
     })
     .catch(() => {
       ElMessage({
-        message: "课程章节数据请求出错！",
+        message: "req chapter data err",
         type: 'error'
       });
     });

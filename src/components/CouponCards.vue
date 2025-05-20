@@ -2,7 +2,7 @@
 <template>
  <div class="couponCards fx" v-for="(item, index) in data" :key="index">
    <div class="price ft-cl-wt" v-if="item.discountType == 4 || item.discountType == 1 || item.discountType == 3">
-     <div>￥ <em>{{item.discountValue / 100}}</em></div>
+     <div>$ <em>{{item.discountValue / 100}}</em></div>
      <div class="desc">{{item.rule}}</div>
    </div>
    <div class="price ft-cl-wt" v-if="item.discountType == 2 || item.discountType == 5">
