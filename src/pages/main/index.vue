@@ -62,7 +62,7 @@
               <span class="ft-cl-des">Build your own learning platform</span>
             </div>
             <div class="butCont fx">
-              <span class="bt-grey marg-rt-15" @click="close">Choose next time</span>
+              <span class="bt-grey marg-rt-15" @click="close">Later</span>
               <span class="bt" @click="saveInterest">Save</span>
             </div>
           </div>
