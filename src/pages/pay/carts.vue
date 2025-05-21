@@ -106,7 +106,7 @@ const getCartsData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "购物车信息请求出错！",
+        message: "req cart info err",
         type: 'error'
       });
     });
