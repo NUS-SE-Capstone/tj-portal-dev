@@ -21,7 +21,7 @@
         <div class="personalCards">
           <CardsTitle class="marg-bt-20" title="All Courses"/>
           <div class=""><span></span></div>
-          <div class="item marg-bt-20" v-for="item in myClassData">
+          <div class="item marg-bt-20" v-for="(item, i) in myClassData" :key="i">
             <ClassCards :data="item" @planHandle="planHandle" type="2"/>
           </div>
         </div>

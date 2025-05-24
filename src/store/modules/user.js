@@ -55,7 +55,7 @@ export function getToken() {
   return useUserStore(store);
 }
 export function isLogin(token) {
-  if(!!sessionStorage.getItem(TOKEN_NAME)){
+  if(sessionStorage.getItem(TOKEN_NAME)){
     return true;
   }
   return refresh()

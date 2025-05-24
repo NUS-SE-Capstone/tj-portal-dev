@@ -331,7 +331,7 @@ const answerHandle = async (type) => {
         // 第一层的回答
         if (type == 'first'){
           getAllQuestionsData()
-        } else if(dialogTableVisible) {
+        } else if(dialogTableVisible.value) {
           getReplyData(isReplay.value, 'one')
         } else {
           getReplyData(isReplay.value, 'one')

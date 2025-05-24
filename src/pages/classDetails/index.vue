@@ -132,9 +132,6 @@ const tableBar = computed(() => {
 // 猜你喜欢 - 静态数据
 const LikeData = [
   {
-    sold: 234, 
-    icon: "sit enim sunt", 
-    sections: 45,
     coverUrl: "http://img-qn-3.51miz.com/preview/muban/00/00/50/44/M-504460-F3103C10.jpg!/quality/90/unsharp/true/compress/true/fw/640/clip/640x500a0a0",
     duration: 444,
     icon: "sit enim sunt",
