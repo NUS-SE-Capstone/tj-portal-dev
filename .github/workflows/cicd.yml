@@ -1,0 +1,67 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      # 拉取项目代码
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      # 给当前环境下载node
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+       # 安装npm依赖
+      - name: Installing Dependencies
+        run: npm install --prefer-offline --no-audit # 优先使用离线缓存; 不审计
+      # 运行代码扫描
+      - name: Running Lint
+        run: npm run lint # 自定义的eslint扫描; 允许warning
+      # 构建
+      - name: Building
+        run: npm run build
+  
+  CD:
+    needs: CI # 需要CI通过; 仅在CI成功后执行
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      # 拉取项目代码
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      # 给当前环境下载node
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+      # 安装npm依赖
+      - name: Installing Dependencies
+        run: npm install --prefer-offline --no-audit # 优先使用离线缓存; 不审计
+      # 构建
+      - name: Building
+        run: npm run build
+      # 部署到服务器
+      - name: Deploying to Server via SSH
+        uses: easingthemes/ssh-deploy@main
+        with:
+          # 私钥, 存在secrets的PRIVATE_KEY中
+          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          # 复制操作的参数。"-avzr --delete"意味部署时清空服务器目标目录下的所有文件
+          ARGS: "-avzr --delete" 
+          # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
+          SOURCE: "./dist/"
+          # 服务器域名/IP
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # 服务器默认用户名为root
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          # 目标目录
+          TARGET: ${{ secrets.REMOTE_TARGET_PATH }}
