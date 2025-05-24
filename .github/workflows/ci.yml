@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
-       # 安装npm依赖
+      # 安装npm依赖
       - name: Installing Dependencies
         run: npm install --prefer-offline --no-audit # 优先使用离线缓存; 不审计
       # 运行代码扫描
