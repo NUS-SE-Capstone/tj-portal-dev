@@ -10,7 +10,8 @@
     "dev:pro": "vite --open --mode product",
     "build": "vite build --mode development",
     "build:test": "vite build --mode test",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.8",
