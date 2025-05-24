@@ -75,7 +75,7 @@ import Note from "./components/Note.vue";
 import icon from '@/assets/icon_good.png'
 
 import router from "../../router";
-import {reactive} from "@vue/reactivity";
+import {reactive} from "vue";
 
 const route = useRoute()
 const store = dataCacheStore()

@@ -2,7 +2,7 @@
 <template>
   <div class="questionWrapper marg-bt-20">
     <div class="askCont" >
-      <div class="askLists" v-for="item in askListsDataes">
+      <div class="askLists" v-for="(item, iidx) in askListsDataes" :key="iidx">
         <div class="userInfo fx ">
           <img :src="item.userIcon" :onerror="onerrorImg(item)" alt="" srcset="">
           {{item.userName  || "anonymous"}}

@@ -7,7 +7,7 @@
       <span class="fx-1 cur-pt" @click="activeHandle(2)" :class="{act: actIndex == 2}">全部笔记</span>
     </div>
     <div class="noteCont" v-if="noteListsDataes.length > 0">
-      <div class="noteLists" v-for="item in noteListsDataes">
+      <div class="noteLists" v-for="(item, iidex) in noteListsDataes" :key="iidex">
       <div class="userInfo fx-sb">
         <div class="fx ft-cl-wt">
           <img :src="item.authorIcon" alt="" srcset="">

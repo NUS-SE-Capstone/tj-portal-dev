@@ -9,7 +9,7 @@
       <span v-for="item in week" :key="item">{{item}}</span>
     </div>
     <div class="calendarCont">
-      <div class="day" v-for="item in calendarData">
+      <div class="day" v-for="item in calendarData" :key="item.date">
           <div class="taday" v-if="item.date==currentDay">
             <span v-if="item.isRecords == 1" style=" cursor: auto;">已打卡</span>
             <span v-else @click="pointsSignHandle(item)">打卡</span>

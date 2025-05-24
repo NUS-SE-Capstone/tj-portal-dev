@@ -9,7 +9,7 @@
     </div>
     <AskChapterItems :data="chapterData" @checkCahpter="checkCahpter"></AskChapterItems>
     <div class="askCont">
-      <div class="askLists" v-for="item in askListsDataes">
+      <div class="askLists" v-for="item in askListsDataes" :key="item.id">
         <div class="userInfo fx">
           <img :src="item.authorIcon" alt="" srcset="">
           {{item.authorName}}

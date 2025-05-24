@@ -7,7 +7,7 @@
       <div class="tabHead">
         <span class="fx-1 alignLeft">课程信息</span><span>订单金额</span><span>实付金额</span><span>交易状态</span><span>操作</span>
       </div>
-      <div class="marg-bt-20" v-for="(item, index) in orderListData">
+      <div class="marg-bt-20" v-for="(item, index) in orderListData" :key="index">
         <div class="tabInfo">
           <div><span class="time alignLeft">{{item.createTime}}</span>订单号：{{item.id}}</div>
         </div>

@@ -50,7 +50,6 @@ const ruleshandle = () => {
 
 // 提交回复数据
 const params = reactive({
-  answerId: "",
   questionId: props.askInfoId, // 当前问题的ID
   targetReplyId: "",
   targetUserId: "",

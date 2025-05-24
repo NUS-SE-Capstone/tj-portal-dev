@@ -10,7 +10,7 @@
     </div>
     <AskChapterItems :data="chapterData" @checkCahpter="checkCahpter"></AskChapterItems>
     <div class="askCont">
-      <div class="askLists" v-for="item in askListsDataes">
+      <div class="askLists" v-for="item in askListsDataes" :key="item.id">
         <div class="userInfo fx">
           <img v-if="item.userIcon" :src="item.userIcon" alt="" srcset="">
           <img v-else src="/src/assets/anonymity.png" alt="" srcset="">

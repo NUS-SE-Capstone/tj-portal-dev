@@ -37,10 +37,10 @@
      </div>
      <div class="answerCardTitle" v-if="myExamDetails">答题卡</div>
      <div class="answerCards">
-      <span v-for="(item, index) in myExamDetails" :class="{right:item.correct,wrong:!item.correct && item.answer != ''}">{{index + 1}}</span>
+      <span v-for="(item, index) in myExamDetails" :key="index" :class="{right:item.correct,wrong:!item.correct && item.answer != ''}">{{index + 1}}</span>
      </div>
      <div class="examCont" >
-        <div class="item" v-for="(item, index) in myExamDetails">
+        <div class="item" v-for="(item, index) in myExamDetails" :key="index">
         <div class="examTitle">
           <div>
             <img v-if="item.correct" src="@/assets/icon_right.png" alt="">
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="answer">
-          <li v-for="it in item.question.options"><span v-html="it"></span></li>
+          <li v-for="it in item.question.options" :key="it"><span v-html="it"></span></li>
         </div>
         <div class="analysis">
           <div class="fx marg-bt-20">
@@ -120,7 +120,8 @@ const answerChange = (type, val) => {
       data = isNaN(Number(val)) ? val : upperAlpha(Number(val))
       break
     }
-    case 2 || 3: {
+    case 2:
+    case 3: {
       const arr = typeof val == 'string' ? val.split(',') : val
       data = arr.map(n => isNaN(Number(n)) ? n : upperAlpha(Number(n))).join(',')
       break
