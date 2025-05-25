@@ -2,14 +2,14 @@
 <template>
   <div class="myInterralWrapper">
     <div class="personalCards">
-      <CardsTitle class="marg-bt-20" title="我的积分" />
+      <CardsTitle class="marg-bt-20" title="My Points" />
       <div class="title"></div>
       <!-- 打卡日历 -->
       <Calendar @pointsSign="pointsSignHandle"></Calendar>
       <!-- 积分获取 -->
       <div class="listCont fx-sb">
         <div class="list">
-          <div class="tit">获取积分</div>
+          <div class="tit">Get Points</div>
           <div class="tab">
             <div class="item fx-sb" v-for="item in access" :key="item.type">
               <span>{{item.type}}</span>
@@ -19,7 +19,7 @@
         </div>
         <div class="listRt">
             <div class="tit fx-sb">
-              <span>学霸天梯榜</span>
+              <span>Ranking</span>
               <span class="more font-bt" @click="() => $router.push({path: 'myIntegralRanking', query:{rank: seasonsData.rank, points:seasonsData.points}})">More &gt;</span>
             </div>
             <IntegralRankTab :data="seasonsData"></IntegralRankTab>
@@ -48,11 +48,11 @@ const store = dataCacheStore()
 const value = ref(new Date())
 
 const access = ref([
-  {value: 1, 'type': '课程学习', points:0, maxPoints: 50},
-  {value: 2, 'type': '每日签到', points:0, maxPoints: 2},
-  {value: 3, 'type': '课程问答', points:0, maxPoints: 20},
-  {value: 4, 'type': '课程笔记', points:0, maxPoints: 20},
-  {value: 5, 'type': '课程评价', points:0, maxPoints: 999},
+  {value: 1, 'type': 'Learn', points:0, maxPoints: 50},
+  {value: 2, 'type': 'ClockIn', points:0, maxPoints: 2},
+  {value: 3, 'type': 'QA', points:0, maxPoints: 20},
+  {value: 4, 'type': 'Note', points:0, maxPoints: 20},
+  {value: 5, 'type': 'Comment', points:0, maxPoints: 999},
 ])
 
 // 课程目录
@@ -86,7 +86,7 @@ const getSeasonsData = () => {
     })
     .catch(() => {
       ElMessage({
-        message: "学霸榜请求失败！",
+        message: "get season data err",
         type: 'error'
       });
     });
@@ -114,7 +114,7 @@ const getSignRecordsHandle = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "用户本日积分情况查询失败",
+        message: "req user clock in err",
         type: 'error'
       });
     });
@@ -125,7 +125,7 @@ const pointsSignHandle = async () => {
     .then((res) => {
       if (res.code == 200 ){
         ElMessage({
-          message: '签到成功！',
+          message: 'Clock In Success!!!',
           type: 'success'
         });
       } else {
@@ -137,7 +137,7 @@ const pointsSignHandle = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "学霸榜请求失败！",
+        message: "Clock in err",
         type: 'error'
       });
     });

@@ -3,11 +3,11 @@
   <div class="couponWrapper">
     <div class="personalCards">
       <div class="headTop fx-sb">
-        <CardsTitle class="marg-bt-20" title="我的优惠券"/>
+        <CardsTitle class="marg-bt-20" title="MyCoupon"/>
         <div class="fx">
-          <span class="font-bt ft-14" @click="() => dialogVisible = true">兑换优惠券&gt;</span>
+          <span class="font-bt ft-14" @click="() => dialogVisible = true">Redeem&gt;</span>
           <span @click="() => $router.push({path: '/personal/main/myCouponExplain'})"
-                class="font-bt ft-14">优惠券使用说明&gt;</span>
+                class="font-bt ft-14">Coupon Intructions&gt;</span>
         </div>
       </div>
       <div>
@@ -22,16 +22,16 @@
     </div>
     <el-dialog
         v-model="dialogVisible"
-        title="兑换优惠券"
+        title="Redeem"
         width="30%"
     >
-      <div class="exchangeCoupon fx"><span>优惠券码：</span>
+      <div class="exchangeCoupon fx"><span>Code</span>
         <el-input type="text" v-model="inputVal" placeholder="please input"/>
       </div>
       <template #footer>
         <span class="dialog-footer">
-          <div class="bt bt-grey" @click="dialogVisible = false">取消</div>
-          <div class="bt" type="primary" @click="exchangeCouponHandle">兑换</div>
+          <div class="bt bt-grey" @click="dialogVisible = false">Cancel</div>
+          <div class="bt" type="primary" @click="exchangeCouponHandle">Redeem</div>
         </span>
       </template>
     </el-dialog>
@@ -56,9 +56,9 @@ const route = useRoute()
 const store = dataCacheStore()
 
 const tableBar = [
-  {id: 1, name: '未使用'},
-  {id: 2, name: '已使用'},
-  {id: 3, name: '已过期'},
+  {id: 1, name: 'unused'},
+  {id: 2, name: 'used'},
+  {id: 3, name: 'expired'},
 ]
 
 // tab切换
@@ -96,7 +96,7 @@ const getMyCouponData = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "订单列表请求失败！",
+          message: "get my coupon err",
           type: 'error'
         });
       });
@@ -108,7 +108,7 @@ const inputVal = ref('')
 
 const exchangeCouponHandle = async () => {
   if (inputVal.value == "") {
-    ElMessage({message: '请输入正确的优惠券码'});
+    ElMessage({message: 'please input correct coupon code'});
     return false
   }
   const params = {code: inputVal.value}
@@ -117,7 +117,7 @@ const exchangeCouponHandle = async () => {
       .then((res) => {
         if (res.code == 200) {
           ElMessage({
-            message: '优惠券兑换成功',
+            message: 'success',
             type: 'success'
           });
           dialogVisible.value = false
@@ -131,7 +131,7 @@ const exchangeCouponHandle = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "订单列表请求失败！",
+          message: "redeem coupon err",
           type: 'error'
         });
       });

@@ -3,16 +3,16 @@
   <div class="couponWrapperExplain">
     <div class="personalCards">
         <BreadCrumb></BreadCrumb>
-        <div class="title">优惠券使用说明</div>
+        <div class="title">Coupon Intructions</div>
         <div class="cont">
-          <p class="tit">1.怎样获取优惠券？</p>
-          <p>Talent Jet会不定期推出课程优惠活动，通过优惠活动可以领取优惠券。</p>
-          <p class="tit">2.怎样使用优惠券？</p>
-          <p>先领取一张优惠券，然后在对应的课程页面，点击”立即购买“，在支付页面中选择需要使用的优惠券。使用优惠券后，付款“价格”会出现对应的变化。</p>
-          <p class="tit">3.如果优惠券面额大于课程的价格，可以使用吗？</p>
-          <p>不可以，优惠券面额≤课程价格时才能使用，购买时最低需支付0.02元。</p>
-          <p class="tit">4.每个人可以领取多少张优惠券？</p>
-          <p>每个人可以领取多张优惠券，但同一门课程的相同的优惠券，一个用户只能领取一张。</p>
+          <p class="tit">1.How to get</p>
+          <p>Talent Jet will periodically launch course promotions.</p>
+          <p class="tit">2.How to use</p>
+          <p>On course page, click "Buy Now" and select the coupon on payment page, then "price" will change.</p>
+          <p class="tit">3.If a coupon's value is greater than the course price?</p>
+          <p>Can't use this coupon.</p>
+          <p class="tit">4.How many coupons can a user get?</p>
+          <p>Each person can get multiple coupons, but for one course, each user can only receive one coupon.</p>
         </div>
     </div>
   </div>
@@ -33,9 +33,9 @@ const route = useRoute()
 const store = dataCacheStore()
 
 const tableBar = [
-  {id: 1, name: '未使用'}, 
-  {id: 2, name: '已使用'}, 
-  {id: 3, name: '已过期'},
+  {id: 1, name: 'unused'}, 
+  {id: 2, name: 'used'}, 
+  {id: 3, name: 'expired'},
 ]
 
 // tab切换
@@ -72,7 +72,7 @@ const getMyCouponData =  async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "订单列表请求失败！",
+        message: "get my couponData error",
         type: 'error'
       });
     });
