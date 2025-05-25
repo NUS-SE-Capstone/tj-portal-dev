@@ -12,18 +12,18 @@
         <div class="ft-cl-des" v-if="type == 'default'"><span></span> {{data.sections}} <span> sectioins</span></div>
         <div class="ft-cl-des fx-sb" v-if="type == 'default'">
           <span>{{data.sold}} people learning</span>
-          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(data.price/100).toFixed(2)}}</span>
+          <span v-if="data.price && Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(data.price/100).toFixed(2)}}</span>
           <span v-else class="ft-16 ft-cl-err">Free</span> 
         </div>
         <div class="ft-cl-des fx-sb" v-if="type == 'search'">
           <span>{{data.sections || 0}} sections <em>.</em>{{data.sold}} people learning</span> 
-          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(Number(data.price)/100).toFixed(2)}}</span>
+          <span v-if="data.price && Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(Number(data.price)/100).toFixed(2)}}</span>
           <span v-else class="ft-16 ft-cl-err">Free</span> 
         </div>
         <div class="ft-cl-des" v-if="type == 'like'"><span>Score:</span> 4.9</div>
         <div class="ft-cl-des fx-sb" v-if="type == 'like'">
           <span>{{data.sections}} plays </span> 
-          <span v-if="Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(Number(data.price)/100).toFixed(2)}}</span> 
+          <span v-if="data.price && Number(data.price) != 0" class="ft-16 ft-cl-err">$ {{(Number(data.price)/100).toFixed(2)}}</span> 
           <span v-else class="ft-16 ft-cl-err">Free</span> 
         </div>
     </div>

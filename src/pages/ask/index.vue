@@ -4,20 +4,20 @@
     <div class="container">
       <div class="askCont fx-sb">
         <div class="formCont bg-wt marg-rt-20 fx-1">
-            <div class="title">发布问题</div>
+            <div class="title">Ask Question</div>
             <el-form
               ref="ruleFormRef"
               :model="ruleForm"
               status-icon
               :rules="rules"
-              label-width="80px"
+              label-width="120px"
               class="demo-ruleForm"
               label-position="left"
             >
-              <el-form-item label="提问课程:" >
+              <el-form-item label="Course" >
                 <span>{{classInfo.title}}</span>
               </el-form-item>
-              <el-form-item label="提问章节:" prop="pass">
+              <el-form-item label="Section" prop="pass">
                 <div>
                   <el-cascader
                     v-model="value"
@@ -25,20 +25,19 @@
                     :props="props"
                     @change="handleChange"
                   />
-                  <div class="desc">选择课程，提问将归属于全局课程；选择分类（如1.1）时，笔记归属于分项于分类。</div>
                 </div>
               </el-form-item>
-              <el-form-item label="问题标题:" prop="title" >
+              <el-form-item label="Question Title" prop="title" >
                 <el-input v-model="ruleForm.title" maxlength="64" @input="ruleshandle"  show-word-limit placeholder="please input"/>
               </el-form-item>
-              <el-form-item label="问题描述:" prop="description">
+              <el-form-item label="Description" prop="description">
                 <el-input v-model="ruleForm.description" rows="11" type="textarea" @input="ruleshandle" maxlength="500" show-word-limit placeholder="please input" />
               </el-form-item>
               <el-form-item>
                 <div class="fx-sb fx-al-ct">
                   <div><el-checkbox v-model="ruleForm.anonymity" label="anonymous" size="large" /></div>
                   <div class="subCont">
-                    <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="submitForm(ruleFormRef)">发布</span>
+                    <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="submitForm(ruleFormRef)">Submit</span>
                     </div>
                 </div>
               </el-form-item>
@@ -121,7 +120,7 @@ const getClassCoursesDataes = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "课程章节数据请求出错！",
+        message: "req course section data err",
         type: 'error'
       });
     });
@@ -149,7 +148,7 @@ const getQuestionsDetailsData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "课程问题数据请求出错！",
+        message: "req course question data err",
         type: 'error'
       });
     });
@@ -187,7 +186,7 @@ const submitForm = (formEl) => {
 
      await subFunc(ruleForm).then((res) => {
         if (res.code == 200) {
-          router.push({path: '/result/success', query: '查看我的问题'})
+          router.push({path: '/result/success', query: 'view my question'})
         } else {
           ElMessage({
             message:res.data.msg,
@@ -197,7 +196,7 @@ const submitForm = (formEl) => {
       })
       .catch(() => {
         ElMessage({
-          message: type.value == 'edit' ? '问题修改出错！':'问题发布出错！',
+          message: type.value == 'edit' ? 'edit question err':'submit question err',
           type: 'error'
         });
       });

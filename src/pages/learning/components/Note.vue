@@ -2,9 +2,9 @@
 <template>
   <div class="learnNoteWrapper">
     <div class="tabCheck">
-      <span class="fx-1 cur-pt" @click="activeHandle(1)" :class="{act: actIndex == 1}">我的笔记</span>
+      <span class="fx-1 cur-pt" @click="activeHandle(1)" :class="{act: actIndex == 1}">My Notes</span>
       <span class="line"></span>
-      <span class="fx-1 cur-pt" @click="activeHandle(2)" :class="{act: actIndex == 2}">全部笔记</span>
+      <span class="fx-1 cur-pt" @click="activeHandle(2)" :class="{act: actIndex == 2}">All Notes</span>
     </div>
     <div class="noteCont" v-if="noteListsDataes.length > 0">
       <div class="noteLists" v-for="(item, iidex) in noteListsDataes" :key="iidex">
@@ -20,19 +20,19 @@
       </div>
       <div class="note">
         <div class="tit ft-14">{{item.content}}</div>
-        <div class="font-bt2" @click="goDetails(item)" v-if="item.latestAnswer && item.latestAnswer.content">最新【{{item.latestAnswer.replier.name}}】的回答</div>
+        <div class="font-bt2" @click="goDetails(item)" v-if="item.latestAnswer && item.latestAnswer.content">Latest[{{item.latestAnswer.replier.name}}] answer</div>
       </div>
       <div class="time fx-sb">
         <div class="tm">{{item.createTime}}</div>
         <div class="actBut">
           <span class="marg-rt-10" @click="editNoteHandle(item)" v-if="userInfo.id == item.authorId ">
-            <i class="iconfont zhy-a-icon-xiugai22x"></i> 编辑
+            <i class="iconfont zhy-a-icon-xiugai22x"></i> Edit
           </span>
           <span @click="gathersHandle(item)" v-if="userInfo.id != item.authorId " :class="{activeLiked:false && item.isGathered}">
-            <i class="iconfont zhy-a-ico-caiji2x"></i> {{item.isGathered ? '已采集' : '采集'}}
+            <i class="iconfont zhy-a-ico-caiji2x"></i> {{item.isGathered ? 'Gathered' : 'Gather'}}
           </span>
           <span class="" @click="delNoteHandle(item)" v-if="userInfo.id == item.authorId ">
-            <i class="iconfont zhy-a-icon-delete22x" style="font-size: 23px;top: 3px;"></i> 删除
+            <i class="iconfont zhy-a-icon-delete22x" style="font-size: 23px;top: 3px;"></i> Delete
           </span>
           <!-- <span class="" @click="putLikedHandle(item)" >
             <i v-show="!item.liked" class="iconfont zhy-a-icon-zan2x"></i> 
@@ -50,7 +50,7 @@
       <div class="fx-sb fx-al-ct" style="margin-top: 12px;">
         <div><el-checkbox v-model="noteParams.isPrivate" label="私密" size="large" /></div>
         <div class="subCont">
-          <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="submitForm()">保存</span>
+          <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="submitForm()">Save</span>
         </div>
       </div>
     </div>

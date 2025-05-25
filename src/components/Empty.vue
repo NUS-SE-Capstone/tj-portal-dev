@@ -15,7 +15,7 @@ defineProps({
   },
   desc: {
     type: String,
-    default: "一条数据也没有～",
+    default: "No Data Here~",
   },
 });
 

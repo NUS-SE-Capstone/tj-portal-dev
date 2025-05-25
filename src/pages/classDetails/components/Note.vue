@@ -245,7 +245,7 @@ const likedHandle = (item) => {
       align-items: center;
       span{
         display: inline-block;
-        width: 96px;
+        width: 108px;
         text-align: center;
         cursor: pointer;
       }
