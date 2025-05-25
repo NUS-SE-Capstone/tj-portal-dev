@@ -1,15 +1,15 @@
 <!-- 个人中心-我的订单 -->
 <template>
   <div class="myOrderWrapper content">
-    <CardsTitle class="marg-bt-20" title="我的订单" />
+    <CardsTitle class="marg-bt-20" title="MyOrder" />
     <TableSwitchBar :data="tableBar" @changeTable="changeTable"></TableSwitchBar>
     <div class="table" >
       <div class="tabHead">
-        <span class="fx-1 alignLeft">课程信息</span><span>订单金额</span><span>实付金额</span><span>交易状态</span><span>操作</span>
+        <span class="fx-1 alignLeft">Course</span><span>Price</span><span>Pay</span><span>Status</span><span>Action</span>
       </div>
       <div class="marg-bt-20" v-for="(item, index) in orderListData" :key="index">
         <div class="tabInfo">
-          <div><span class="time alignLeft">{{item.createTime}}</span>订单号：{{item.id}}</div>
+          <div><span class="time alignLeft">{{item.createTime}}</span>OrderId: {{item.id}}</div>
         </div>
         <div class="tabCont">
           <div class="orderList">
@@ -18,11 +18,11 @@
             </div>
             <span>{{amountConversion(item.totalAmount)}}</span><span>{{amountConversion(item.realAmount)}}</span><span>{{orderStatus(item)}}</span>
             <span class="btCont">
-              <span class="bt" v-if="isOrderPay(item)">评价课程</span>
-              <span @click="() => $router.push({path: 'myOrderDetails',query: {id:item.id}})" class="bt bt-grey1">查看订单</span>
-              <span v-if="item.status == 1 " @click="cancelOrderHandle(item)" class="bt bt-grey">取消订单</span>
-              <span v-if="item.status == 1 " @click="() => $router.push({path: '/pay/payment',query: {orderId:item.id}})" class="bt">去支付</span>
-              <span v-if="item.status == 3 || item.status == 5"  @click="delOrderHandle(item)" class="bt bt-grey1">删除订单</span>
+              <span class="bt" v-if="isOrderPay(item)">Comment</span>
+              <span @click="() => $router.push({path: 'myOrderDetails',query: {id:item.id}})" class="bt bt-grey1">View</span>
+              <span v-if="item.status == 1 " @click="cancelOrderHandle(item)" class="bt bt-grey">Cancel</span>
+              <span v-if="item.status == 1 " @click="() => $router.push({path: '/pay/payment',query: {orderId:item.id}})" class="bt">Pay</span>
+              <span v-if="item.status == 3 || item.status == 5"  @click="delOrderHandle(item)" class="bt bt-grey1">Delete</span>
             </span>
           </div>
         </div>
@@ -62,12 +62,12 @@ const store = dataCacheStore()
 
 const tableBar = [
   {id: 0, name: 'All'},
-  {id: 1, name: '待支付'},
-  {id: 2, name: '已支付'},
-  {id: 3, name: '已关闭'},
-  {id: 4, name: '已完成'},
-  {id: 5, name: '已报名'},
-  {id: 6, name: '已退款'}
+  {id: 1, name: 'Paying'},
+  {id: 2, name: 'Paid'},
+  {id: 3, name: 'Closed'},
+  {id: 4, name: 'Finished'},
+  {id: 5, name: 'SignedUp'},
+  {id: 6, name: 'Refunded'},
 ]
 
 // tab切换
@@ -119,7 +119,7 @@ const getOrderListesData =  async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "订单列表请求失败！",
+        message: "get order list err",
         type: 'error'
       });
     });
@@ -133,28 +133,28 @@ function orderStatus(item) {
   let data = ''
   switch(item.status){
     case 1: {
-      data = '待支付'
+      data = 'Paying'
       break
     }
     case 2: {
-      data = '已支付'
+      data = 'Paid'
       break
     }
     case 3: {
-      data = '已关闭'
+      data = 'Closed'
       break
     }
     case 4: {
-      data = '已完成'
+      data = 'Finished'
       break
     }
     case 5: {
-      data = '已报名'
+      data = 'SignedUp'
       break
     }
     case 6: {
       let i = item.details.findIndex(d => d.refundStatus === 5);
-      data = i !== -1 ? '已退款' : "退款中"
+      data = i !== -1 ? 'Refunded' : "Refunding"
       break
     }
   }
@@ -163,11 +163,11 @@ function orderStatus(item) {
 // 取消订单
 const cancelOrderHandle = async (item) => {
   ElMessageBox.confirm(
-        `是否确认取消该订单吗？`,
-        '取消订单',
+        `Confirm to cancel the order?`,
+        'Cancel Order',
         {
-          confirmButtonText: '确认',
-          cancelButtonText: '取消',
+          confirmButtonText: 'Yes',
+          cancelButtonText: 'No',
           type: 'delete',
         }
       )
@@ -192,7 +192,7 @@ const cancelOrderAction = async (item) => {
     })
     .catch(() => {
       ElMessage({
-        message: "取消订单请求失败！",
+        message: "cancel order err",
         type: 'error'
       });
     });
@@ -200,11 +200,11 @@ const cancelOrderAction = async (item) => {
 // 删除确认
 const delOrderHandle = async (item) => {
   ElMessageBox.confirm(
-        `您确认删除该订单吗，点击确认将永久消失？`,
-        '确认删除',
+        `Confirm to delete the order?`,
+        'Confirm Delete',
         {
-          confirmButtonText: '删除',
-          cancelButtonText: '取消',
+          confirmButtonText: 'Yes',
+          cancelButtonText: 'No',
           type: 'delete',
         }
       )
@@ -213,7 +213,7 @@ const delOrderHandle = async (item) => {
         })
         .catch(() => {
           ElMessage({
-            message: "取消操作！",
+            message: "cancel delete",
             type: 'info'
           });
         })
@@ -226,7 +226,7 @@ const delOrderAction = async (item) => {
       if (res.code === 200 ){
         getOrderListesData()
         ElMessage({
-          message: '订单删除成功',
+          message: 'success',
           type: 'success'
         });
       } else {
@@ -238,7 +238,7 @@ const delOrderAction = async (item) => {
     })
     .catch(() => {
       ElMessage({
-        message: "删除订单请求失败！",
+        message: "del order err",
         type: 'error'
       });
     });

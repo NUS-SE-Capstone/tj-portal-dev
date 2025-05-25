@@ -2,30 +2,30 @@
 <template>
   <div class="classCards fx-1">
     <el-table class="table" :data="data" style="">
-      <el-table-column prop="courseName" center label="课程">
+      <el-table-column prop="courseName" center label="Course">
         <template #default="scope">
           <div>{{scope.row.courseName}}</div>
         </template>
       </el-table-column>
-      <el-table-column center prop="sectionName" label="章节" align="center" min-width="160" />
-      <el-table-column prop="commitTime" align="center" label="考试时间" width="180" >
+      <el-table-column center prop="sectionName" label="Section" align="center" min-width="160" />
+      <el-table-column prop="commitTime" align="center" label="Time" width="180" >
         <template #default="scope">
           <span>{{scope.row.commitTime ? scope.row.commitTime : '--'}}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="commitTime" align="center" label="类型" width="100" >
+      <el-table-column prop="type" align="center" label="Type" width="100" >
         <template #default="scope">
           <span>{{scope.row.type == 0 ? '练习' : '考试'}}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="score" align="center" label="分数" width="60" >
+      <el-table-column prop="score" align="center" label="Score" width="60" >
         <template #default="scope">
           <span>{{scope.row.score || 0}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="操作" align="center" width="100">
+      <el-table-column label="Action" align="center" width="100">
         <template #default="scope">
-          <div class="font-bt1" @click="() => $router.push({path:'myExamdetails', query:scope.row})">查看</div>
+          <div class="font-bt1" @click="() => $router.push({path:'myExamdetails', query:scope.row})">view</div>
         </template>
       </el-table-column>
     </el-table>

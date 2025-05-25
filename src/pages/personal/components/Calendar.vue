@@ -2,8 +2,8 @@
 <template>
   <div class="calendar">
     <div class="label">
-      <div class="fx marg-rt-20"><span></span> 未打卡 </div>
-      <div class="fx"><span style="background: #ECF4FF;"></span>已打卡</div>
+      <div class="fx marg-rt-20"><span></span> NoClock </div>
+      <div class="fx"><span style="background: #2080F7;"></span>Clocked</div>
     </div>
     <div class="calendarHead">
       <span v-for="item in week" :key="item">{{item}}</span>
@@ -11,8 +11,8 @@
     <div class="calendarCont">
       <div class="day" v-for="item in calendarData" :key="item.date">
           <div class="taday" v-if="item.date==currentDay">
-            <span v-if="item.isRecords == 1" style=" cursor: auto;">已打卡</span>
-            <span v-else @click="pointsSignHandle(item)">打卡</span>
+            <span v-if="item.isRecords == 1" style=" cursor: auto;">Clocked</span>
+            <span v-else @click="pointsSignHandle(item)">Clock In</span>
           </div>
           <div :class="{noMonth: item.date.split('-')[1] != currentDay.split('-')[1], records: item.isRecords == 1,noRecords: item.isRecords == 0}" v-else>
             {{item.date.split('-')[2]}}
@@ -35,7 +35,7 @@ const props = defineProps({
 })
 // 定义emits
 const emit = defineEmits(['pointsSign']);
-const week = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+const week = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const calendarData = ref([])
 const currentDay = moment().format('YYYY-MM-DD')
 
@@ -86,7 +86,7 @@ const getSignRecordsHandel = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "学霸榜请求失败！",
+        message: "get clock in records err",
         type: 'error'
       });
     });

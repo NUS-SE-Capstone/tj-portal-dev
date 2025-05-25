@@ -4,14 +4,14 @@
     <div class="">
       <!-- 最近学习 -->
       <div class="personalCards" v-if="learningData != null && typeof(learningData) != 'string'">
-        <CardsTitle class="marg-bt-20" title="最近学习"/>
+        <CardsTitle class="marg-bt-20" title="Recent Learn"/>
         <ClassCards :data="learningData" type="1"/>
       </div>
       <!-- 学习计划 -->
       <div class="personalCards" v-if="planData && typeof(planData) != 'string'">
         <CardsTitle title="Study Plan">
           <div class="ft-wt-400"><span
-              class="marg-rt-20">Week Plan: <em>{{ weekFinishedAmount || 0 }}</em> / {{ weekPlanAmount || 0 }}</span> <span>Rewards: <em>{{ totalPoints || 0 }}</em></span>
+              class="marg-rt-20">Week Plan: <em>{{ weekFinishedAmount || 0 }}</em> / {{ weekPlanAmount || 0 }}</span> <span>Points: <em>{{ totalPoints || 0 }}</em></span>
           </div>
         </CardsTitle>
         <PlanTable :data="planData"></PlanTable>
@@ -31,20 +31,20 @@
     <el-dialog
         v-model="dialogVisible"
         :title="title"
-        width="30%"
+        width="50%"
     >
       <div class="dialogCont">
-        <div class="fx marg-bt-20"><span>每周学习节数:</span>
+        <div class="fx marg-bt-20"><span>Weekly Sections</span>
           <el-input @input="planDayHandle" v-model="number" min="1" type="number"></el-input>
         </div>
-        <div class="fx"><span>预计学完时间:</span>
+        <div class="fx"><span>Expect Finish</span>
           <div class="lastTime">{{ lastTime }}</div>
         </div>
       </div>
       <template #footer>
           <span class="dialogFooter">
-            <div @click="dialogVisible = false"><span class="bt bt-grey">取消</span></div>
-            <div @click="createPlan"><span class="bt">确定</span></div>
+            <div @click="dialogVisible = false"><span class="bt bt-grey">Cancel</span></div>
+            <div @click="createPlan"><span class="bt">Confirm</span></div>
           </span>
       </template>
     </el-dialog>
@@ -91,7 +91,7 @@ const getLearningData = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "最近学习数据请求出错！",
+          message: "get my learning err",
           type: 'error'
         });
       });
@@ -122,7 +122,7 @@ const getPlanData = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "最近学习数据请求出错！",
+          message: "get my plan err",
           type: 'error'
         });
       });
@@ -143,7 +143,7 @@ const planDayHandle = val => {
 }
 
 const dialogVisible = ref(false)
-const title = ref('创建计划')
+const title = ref('Create Plan')
 const currentData = ref();
 // 打开创建、修改弹窗
 const planHandle = (val) => {
@@ -153,10 +153,10 @@ const planHandle = (val) => {
   if (type == 'edit') {
     number.value = data.weekFreq
     days.value = data.sections
-    title.value = '修改计划'
+    title.value = 'Change Plan'
   } else if (type == 'add') {
     days.value = data.sections
-    title.value = '创建计划'
+    title.value = 'Create Plan'
   } else if (type == 'del') {
     delMyClassData(data.course.id)
   }
@@ -172,7 +172,7 @@ const createPlan = async () => {
         if (res.code == 200) {
           getPlanData()
           ElMessage({
-            message: `${title.value}成功`,
+            message: `${title.value} Success`,
             type: 'success'
           });
           dialogVisible.value = false
@@ -180,7 +180,7 @@ const createPlan = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "最近学习数据请求出错！",
+          message: "create plan err",
           type: 'error'
         });
       });
@@ -195,7 +195,7 @@ const delMyClassData = async (id) => {
       })
       .catch(() => {
         ElMessage({
-          message: "最近学习数据请求出错！",
+          message: "del course err",
           type: 'error'
         });
       });
@@ -220,7 +220,7 @@ const getMylessonsData = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "最近学习数据请求出错！",
+          message: "get my class err",
           type: 'error'
         });
       });

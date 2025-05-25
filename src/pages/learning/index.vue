@@ -21,7 +21,7 @@
       <div class="closeRt cur-pt" :class="{close: isClose}" @click="close"><i class="iconfont zhy-a-shouqi2x"></i></div>
       <div class="teachInfo fx">
         <img @click="() => $router.push({path:'/details/index', query:{id: learningClassDetails.id}})"
-          :src="learningClassDetails && learningClassDetails.coverUrl" alt="">
+          :src="learningClassDetails && learningClassDetails.coverUrl || defaultCover" alt="">
         <div class="">
           <div class="tit">{{learningClassDetails && learningClassDetails.name}}</div>
           <div class="teacher ft-14"> Teacher: {{learningClassDetails && learningClassDetails.teacherName}}</div>
@@ -61,6 +61,7 @@
 </template>
 <script setup>
 /** 数据导入 **/
+import defaultCover from '@/assets/default-cover.png'
 import { onMounted, ref, onUnmounted, provide, h } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { getMediasSignature, addPlayLog, getLearningClassDetails } from "@/api/class.js";

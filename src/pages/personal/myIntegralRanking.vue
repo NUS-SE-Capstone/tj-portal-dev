@@ -3,15 +3,15 @@
   <div class="myInterralRankingWrapper">
     <div class="personalCards">
       <BreadCrumb></BreadCrumb>
-      <CardsTitle class="marg-bt-20" title="学霸天梯榜" />
+      <CardsTitle class="marg-bt-20" title="Ranking" />
       <div class="listCont fx-sb">
         <div class="listRt">
-          <div class="tit">本赛季榜</div>
+          <div class="tit">Current Season</div>
           <IntegralRankTab :data="currentSeasonsData"></IntegralRankTab>
         </div>
         <div class="listRt">
           <div class="tit fx-sb">
-            <span>历史榜</span>
+            <span>History</span>
             <div>
               <el-select v-model="season" @change="selectHandle" class="m-2" placeholder="Select">
                 <el-option
@@ -49,11 +49,11 @@ const store = dataCacheStore()
 const value = ref(new Date())
 
 const access = ref([
-  {'title': '课程学习', status: true},
-  {'title': '课程评论', status: false},
-  {'title': '课程问答', status: false},
-  {'title': '课程笔记', status: false},
-  {'title': '签到', status: false},
+  {'title': 'Learn', status: true},
+  {'title': 'ClockIn', status: false},
+  {'title': 'QA', status: false},
+  {'title': 'Note', status: false},
+  {'title': 'Comment', status: false},
 ])
 
 // 课程目录
@@ -95,7 +95,7 @@ const getSeasonsData = (season) => {
     })
     .catch(() => {
       ElMessage({
-        message: "学霸榜请求失败！",
+        message: "get season data err",
         type: 'error'
       });
     });
@@ -118,7 +118,7 @@ const getHistorySeasonsData = () => {
     })
     .catch(() => {
       ElMessage({
-        message: "学霸榜请求失败！",
+        message: "get history season data err",
         type: 'error'
       });
     });

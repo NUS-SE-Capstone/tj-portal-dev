@@ -4,7 +4,7 @@
     <img :src="data.coverUrl" alt=""  @click="() => $router.push({path: '/details/index', query:{id: data.courseId}})">
     <div class="info">
       <p class="tit">{{data.name}}</p>
-      <p>{{data.price === 0 ?  '免费' : '¥' + (data.price / 100).toFixed(2)}}</p>
+      <p>{{ !data.price || data.price === 0 ?  'Free' : '$' + (data.price / 100).toFixed(2)}}</p>
     </div>
   </div>
 </template>

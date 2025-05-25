@@ -192,6 +192,7 @@ const getClassDetailsData = async () => {
     .then((res) => {
       if (res.code === 200) {
         baseDetailsData.value = res.data
+        // todo 换成服务器的默认图片
         if(baseDetailsData.value.coverUrl == '/img-tx/default-cover-url.jpg') {
           baseDetailsData.value.coverUrl = defaultCover
         }

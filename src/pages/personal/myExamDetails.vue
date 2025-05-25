@@ -3,39 +3,39 @@
   <div class="myExamDetails">
      <BreadCrumb></BreadCrumb>
      <div class="examHeadle">
-      <div class="tit">考试批阅</div>
+      <div class="tit">Exam Marking</div>
       <div class="table">
         <div class="fx-sb">
           <div class="td fx-1">
-            <div class="marg-bt-10 ft-wt-600 ft-cl-1">所属课程</div>
+            <div class="marg-bt-10 ft-wt-600 ft-cl-1">Course</div>
             <div>{{$route.query.courseName}}</div>
           </div>
           <div  class="td fx-1">
-            <div class="marg-bt-10 ft-wt-600 ft-cl-1">测试名称</div>
+            <div class="marg-bt-10 ft-wt-600 ft-cl-1">Section</div>
             <div>{{$route.query.sectionName}}</div>
           </div>
           <div  class="td fx-1">
-            <div class="marg-bt-10 ft-wt-600 ft-cl-1">学员名称</div>
+            <div class="marg-bt-10 ft-wt-600 ft-cl-1">Student</div>
             <div>{{stroe.getUserInfo.name}}</div>
           </div>
         </div>
         <div class="fx-sb">
           <div class="td fx-1">
-            <div class="marg-bt-10 ft-wt-600 ft-cl-1">所用时长</div>
+            <div class="marg-bt-10 ft-wt-600 ft-cl-1">Duration</div>
             <div>{{$route.query.duration ? timeFormat($route.query.duration) : '00 : 00 : 00'}} </div>
           </div>
           <div  class="td fx-1">
-            <div class="marg-bt-10 ft-wt-600 ft-cl-1">提交时间</div>
+            <div class="marg-bt-10 ft-wt-600 ft-cl-1">SubmitTime</div>
             <div>{{$route.query.commitTime}}</div>
           </div>
           <div  class="td fx-1">
-            <div class="marg-bt-10 ft-wt-600 ft-cl-1">总 分 数</div>
+            <div class="marg-bt-10 ft-wt-600 ft-cl-1">Score</div>
             <div>{{$route.query.score || 0}} / {{total}}</div>
           </div>
         </div>
       </div>
      </div>
-     <div class="answerCardTitle" v-if="myExamDetails">答题卡</div>
+     <div class="answerCardTitle" v-if="myExamDetails">AnswerSheet</div>
      <div class="answerCards">
       <span v-for="(item, index) in myExamDetails" :key="index" :class="{right:item.correct,wrong:!item.correct && item.answer != ''}">{{index + 1}}</span>
      </div>
@@ -55,12 +55,12 @@
         </div>
         <div class="analysis">
           <div class="fx marg-bt-20">
-            <div class="col ft-wt-600">你的答案：{{answerChange(item.question.type, item.answer)}}</div>
-            <div class="col rt ft-wt-600">正确答案：{{answerChange(item.question.type, item.question.answer)}}</div>
-            <div class="col">难易程度：{{defficultyChange(item.question.difficulty)}}</div>
+            <div class="col ft-wt-600">Your Answer: {{answerChange(item.question.type, item.answer)}}</div>
+            <div class="col rt ft-wt-600">Correct: {{answerChange(item.question.type, item.question.answer)}}</div>
+            <div class="col">Level: {{defficultyChange(item.question.difficulty)}}</div>
             <div>得分：{{item.score}}</div>
           </div>
-          <div class="fx" v-if="item.question.analysis">答案解析：<span v-html="item.question.analysis"></span></div>
+          <div class="fx" v-if="item.question.analysis">Reason: <span v-html="item.question.analysis"></span></div>
         </div>
         </div>
      </div>
@@ -107,7 +107,7 @@ const getExamDetailsData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "最近学习数据请求出错！",
+        message: "get exam details err",
         type: 'error'
       });
     });
@@ -127,7 +127,7 @@ const answerChange = (type, val) => {
       break
     }
     case 4 : {
-      data = val  ? '正确' : '错误'
+      data = val  ? 'True' : 'False'
       break
     }
     case 5 : {
@@ -138,7 +138,7 @@ const answerChange = (type, val) => {
   return data
 }
 const defficultyChange = (item) => {
- return item == 1 ? '简单' : item == 2 ? '中等' : '困难'
+ return item == 1 ? 'easy' : item == 2 ? 'medium' : 'hard'
 }
 </script>
 <style lang="scss" src="./index.scss"> </style>

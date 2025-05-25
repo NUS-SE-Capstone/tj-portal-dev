@@ -2,11 +2,11 @@
 <template>
   <div class="integralRankTab">
     <div class="item head fx-sb">
-      <span>排名</span> <span class="ct">姓名</span> <span>积分</span>
+      <span>Rank</span> <span class="ct">Name</span> <span>Points</span>
     </div>
     <div class="item myItem fx-sb">
       <span>{{ data.rank || '--' }}</span>
-      <span class="ct">我</span>
+      <span class="ct">Me</span>
       <span>{{ data.points || '--'  }}</span>
     </div>
     <div v-if="data.boardList">
