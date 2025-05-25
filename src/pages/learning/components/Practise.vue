@@ -2,13 +2,13 @@
 <template>
   <div class="practiseWrapper">
     <div class="preview">
-      <div class="previewTit">答题卡</div>
+      <div class="previewTit">Answer Sheet</div>
       <div class="previewList">
         <span v-for="(item, index) in params"
           :class="{act: item && item.answers != undefined && String(item.answers) != ''}" :key="index">{{index +
           1}}</span>
       </div>
-      <div class="previewSub" @click="submit"><span class="bt">提交试卷</span></div>
+      <div class="previewSub" @click="submit"><span class="bt">Submit</span></div>
 
     </div>
     <div class="ExQuestions" v-infinite-scroll="load" style="overflow: auto">
@@ -38,13 +38,13 @@
         </div>
         <div v-if="item.type == 4">
           <el-radio-group v-model="item.answers" class="ml-4">
-            <el-radio :label="true" size="large">A. 正确</el-radio>
-            <el-radio :label="false" size="large">B. 错误</el-radio>
+            <el-radio :label="true" size="large">A. True</el-radio>
+            <el-radio :label="false" size="large">B. False</el-radio>
           </el-radio-group>
         </div>
         <div v-if="item.type == 5">
           <el-input type="textarea" class="textArea" rows="5" maxlength="200" v-model="item.answers"
-            placeholder="请输入正确答案" show-word-limit></el-input>
+            placeholder="please input correct answer" show-word-limit></el-input>
         </div>
       </div>
     </div>
@@ -83,19 +83,19 @@ const subjectTypeWt = (type) => {
   let str = ''
   switch (type) {
     case 1:
-      str = ' (选择题) ';
+      str = ' (Select) ';
       break
     case 2:
-      str = ' (多选题) ';
+      str = ' (Multi-select) ';
       break
     case 3:
-      str = ' (不定项选择题) ';
+      str = ' (Any-select) ';
       break
     case 4:
-      str = ' (判断题) ';
+      str = ' (Judge) ';
       break
     case 5:
-      str = ' (主观题) ';
+      str = ' (Subjective) ';
       break
   }
   return str
@@ -148,7 +148,7 @@ const getSubjectList = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "学习计划获取请求出错！",
+        message: "req learning plan data err",
         type: 'error'
       });
     });
@@ -163,11 +163,11 @@ const submit = () => {
   const Effective = params.value.filter(n => n.answers != "" && n.answers != undefined)
   if (Effective.length < subjectList.value.length) {
     ElMessageBox.confirm(
-      `还有未提交答案，是否要提交答卷。`,
-      '确认交卷',
+      `exist unanswered questions, confirm to submit?`,
+      'Confirm Submission',
       {
-        confirmButtonText: '确认提交',
-        cancelButtonText: '我再看看',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
         type: 'warning',
       }
     )
@@ -192,7 +192,7 @@ const postSubjectHandle = async () => {
         subjectList.value = res.data
         isSubmit.value = true
         ElMessage({
-          message: '答案提交成功, 请前往个人中心查看',
+          message: 'Submit Successfully, go personal center to check',
           type: 'success'
         })
         emit('playHadle', { item: currentPlayData.value, tp: '9' })
@@ -205,7 +205,7 @@ const postSubjectHandle = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "学习计划获取请求出错！",
+        message: "post subject err",
         type: 'error'
       });
     });
@@ -223,11 +223,11 @@ function leaveConfirm() {
   const Effective = params.value.filter(n => n.answers != "" && n.answers != undefined)
   if (Effective.length > 0) {
     ElMessageBox.confirm(
-      `还有未提交答案，是否要提交答卷。`,
-      '确认交卷',
+      `exist unanswered questions, confirm to submit?`,
+      'Confirm Submission',
       {
-        confirmButtonText: '确认提交',
-        cancelButtonText: '我再看看',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
         type: 'warning',
       }
     )

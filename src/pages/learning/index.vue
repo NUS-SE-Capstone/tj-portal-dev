@@ -5,7 +5,7 @@
       <div class="head fx-sb">
         <div class="fx cur-pt" @click="goBack">
           <img src="@/assets/icon_back.png" alt="">
-          <div>返回 <span class="line">|</span> {{ currentPlayData.sectionName }}</div>
+          <div>Back <span class="line">|</span> {{ currentPlayData.sectionName }}</div>
         </div>
       </div>
       <div class="videoCont">
@@ -24,7 +24,7 @@
           :src="learningClassDetails && learningClassDetails.coverUrl" alt="">
         <div class="">
           <div class="tit">{{learningClassDetails && learningClassDetails.name}}</div>
-          <div class="teacher ft-14"> 讲师 : {{learningClassDetails && learningClassDetails.teacherName}}</div>
+          <div class="teacher ft-14"> Teacher: {{learningClassDetails && learningClassDetails.teacherName}}</div>
         </div>
       </div>
       <div class="cont">
@@ -50,11 +50,11 @@
     <div class="askAndNote" :class="{close: !isClose}" @click="open">
       <div class="fx-cl-ct">
         <img src="../../assets/btn-wd.png" alt="">
-        <p>问答</p>
+        <p>QA</p>
       </div>
       <div class="fx-cl-ct">
         <img src="../../assets/btn-bj.png" alt="">
-        <p>笔记</p>
+        <p>Notes</p>
       </div>
     </div>
   </div>
@@ -85,7 +85,7 @@ const pageType = ref(1)
 // 结果 - 详情Id
 const detailsId = ref({})
 // 课程信息及讲师信息
-const tableBar = [{id: 1, name: '目录'}, {id: 2, name: '问答'}, {id: 3, name: '笔记'}]
+const tableBar = [{id: 1, name: 'Catalog'}, {id: 2, name: 'QA'}, {id: 3, name: 'Notes'}]
 // 课程目录
 const classListData = ref([])
 
@@ -181,7 +181,7 @@ const getLearningClassDetailsData = async () => {
       })
       .catch(() => {
         ElMessage({
-          message: "请求出错！",
+          message: "req learning class details err",
           type: 'error'
         });
       });
@@ -196,8 +196,8 @@ const classFinished = () => {
         [h('img', { src: icon, style: 'width:52px;height:52px;margin-right: 10px;' }),
         [h('div', null,
           [
-            h('div', { style: 'font-size: 18px;font-weight: 500;' }, '你真棒！'),
-            h('div', { style: 'line-height:30px' }, '所有内容全部学完，可以开始新的征程了~')
+            h('div', { style: 'font-size: 18px;font-weight: 500;' }, 'Good!'),
+            h('div', { style: 'line-height:30px' }, 'All is done! You can start your next course now.'),
           ])
         ]
         ]
@@ -205,7 +205,7 @@ const classFinished = () => {
 
     ]),
     showCancelButton: false,
-    confirmButtonText: '我知道了',
+    confirmButtonText: 'OK',
   })
     .then(() => {
       router.push('/personal/main/myClass')
@@ -280,7 +280,7 @@ const addPlayLogHandle = () => {
   addPlayLog({lessonId, sectionId, moment, duration, sectionType: 1, commitTime: now()})
       .then((res) => {
         if (res.code === 200) {
-          console.log("记录成功:", res)
+          console.log("Record Success:", res)
         }
       })
       .catch(err =>console.log(err));
@@ -310,7 +310,7 @@ const playHadle = async (val) => {
   const {item, tp} = val
   if(tp == 0){
     finished.value = false;
-    ElMessage.success("本章学习完毕，做做练习吧")
+    ElMessage.success("Section finished, try some exercises")
     return
   }
   // 小节名称
@@ -350,11 +350,11 @@ const playHadle = async (val) => {
     // 打开练习题 开始考试
     if (item.type != 2 ){
         ElMessageBox.confirm(
-        `温馨提示：考试只能考一次，如果中途退出或未提交结果，将不会允许再次考试，确认考试请点击 继续考试`,
-        '确认考试',
+        `Reminder: The exam can only be taken once. If withdraw/fail to submit answers, you will not be allowed to take exam again.`,
+        'Confirm Exam',
           {
-            confirmButtonText: '继续考试',
-            cancelButtonText: '等会再来',
+            confirmButtonText: 'continue',
+            cancelButtonText: 'next time',
             type: 'warning',
           }
         )

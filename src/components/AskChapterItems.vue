@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="openHandle" @click="openHandle"> 
-        {{isOpen ? '展开': '收起'}} 
+        {{isOpen ? 'open': 'collapse'}} 
         <iconOpen :class="{'icon-open':isOpen}" class="icon"></iconOpen>
       </div>
     </div>

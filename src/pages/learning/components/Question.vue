@@ -9,12 +9,12 @@
         </div>
         <div class="ask">
           <div class="tit ft-14">{{item.title}}</div>
-          <div class="font-bt2" @click="goDetails(item)" v-if="item.latestAnswer && item.latestAnswer.content">最新【{{item.latestAnswer.replier.name}}】的回答</div>
+          <div class="font-bt2" @click="goDetails(item)" v-if="item.latestAnswer && item.latestAnswer.content">Latest [{{item.latestAnswer.replier.name}}] answer</div>
         </div>
         <div class="time fx-sb">
           <div>{{item.createTime}}</div>
           <div class="actBut">
-            <span class="marg-rt-10" @click="() => $router.push({path:'/askDetails/index', query:{id:item.id}})">回答 {{item.answerTimes}}</span>
+            <span class="marg-rt-10" @click="() => $router.push({path:'/askDetails/index', query:{id:item.id}})">Answer {{item.answerTimes}}</span>
           </div>
         </div>
       </div>
@@ -116,7 +116,7 @@ const getAskListsDataes = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "问答列表数据请求出错！",
+        message: "req ask list err",
         type: 'error'
       });
     });
@@ -135,7 +135,7 @@ await putLiked({bizType: "QA", bizId:item.id, liked:!item.liked})
     })
     .catch(() => {
       ElMessage({
-        message: "点赞请求出错！",
+        message: "put like err",
         type: 'error'
       });
     });
@@ -163,7 +163,7 @@ const handleCurrentChange = (val) => {
 const submitForm = async () => {
 if (!isSend.value){
   ElMessage({
-    message:'请输入标题和描述',
+    message:'please input',
     type:'error'
   })
   return 
@@ -183,7 +183,7 @@ await postQuestions(quest)
     })
     .catch(() => {
       ElMessage({
-        message: "提问请求出错！",
+        message: "post question err",
         type: 'error'
       });
     });

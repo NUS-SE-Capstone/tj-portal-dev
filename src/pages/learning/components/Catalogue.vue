@@ -10,8 +10,8 @@
           <i  @click="play(it, it.type == 2 ? 1 :it.type)" :class="startIcon(it)"></i>
           <div class="subTit fx-1">
             <span @click="play(it, it.type == 2 ? 1 : it.type == 2 ? 1 :it.type)" class="marg-rt-10">{{it.name}}</span>
-            <span v-if="it.hasTest" @click="play(it, it.type == 2 ? 2 :it.type)" class="chapter">练习</span>
-            <span v-if="it.trailer" class="trailer-font">试看</span>
+            <span v-if="it.hasTest" @click="play(it, it.type == 2 ? 2 :it.type)" class="chapter">Test</span>
+            <span v-if="it.trailer" class="trailer-font">Try</span>
           </div>
           <div> 
             <span @click="play(it, it.type == 2 ? 1 :it.type)" v-if="it.mediaDuration != 0">{{(it.mediaDuration/60).toFixed(0)}}:{{item.mediaDuration%60}}</span>

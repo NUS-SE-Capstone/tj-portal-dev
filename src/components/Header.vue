@@ -32,9 +32,10 @@
         </el-input>
       </div>
       <div class="fx-al-ct pt-rt">
-        <div class="car fx-al-ct font-bt2" v-if="userInfo" @click="() => $router.push('/pay/carts')">
+        <!-- todo 购物车 -->
+        <!-- <div class="car fx-al-ct font-bt2" v-if="userInfo" @click="() => $router.push('/pay/carts')">
           <i class="iconfont">&#xe6f3;</i> ShoppingCart
-        </div>
+        </div> -->
         <!-- 学习中心 - start -->
         <div v-if="userInfo  && userInfo.name">
           <span class="marg-lr-40 font-bt2" style="padding:27px 0"
