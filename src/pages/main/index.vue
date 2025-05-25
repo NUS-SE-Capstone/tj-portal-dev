@@ -9,11 +9,12 @@
       <!-- 头部幻灯片 -->
       <Swiper :data="imags"></Swiper>
     </div>
-    <!-- 兴趣模块  -->
-    <div class="container" v-if="interest.size > 0">
+
+    <!-- todo 兴趣模块  -->
+    <!-- <div class="container" v-if="interest.size > 0">
       <Interest :data="interest" :key="intKey" @setInterest="setInterest"></Interest>
-    </div>
-    <!-- 兴趣模块 -->
+    </div> -->
+    
     <!-- 直播公开课 -->
     <!-- <div class="bg-wt pd-tp-30">
       <OpenClass
@@ -22,6 +23,7 @@
         :data="freeClassData"
       ></OpenClass>
     </div> -->
+
     <!-- 新课推荐 -->
     <div class="pd-tp-30 bg-wt">
       <OpenClass
@@ -30,10 +32,12 @@
         :data="freeClassData"
       ></OpenClass>
     </div>
+
     <!-- 广告位 -->
     <!-- <div class="globalTopBanner" style="display: block;">
       <img src="/src/assets/adv.png" />
     </div> -->
+
     <!-- 精品好课 -- start -->
     <div class="pd-tp-30">
       <OpenClass
@@ -43,6 +47,7 @@
       ></OpenClass>
     </div>
     <!-- 精品好课 -- end -->
+
     <!-- 精品新课 -- start -->
     <div class="pd-tp-30">
       <OpenClass
@@ -52,6 +57,7 @@
       ></OpenClass>
     </div>
     <!-- 精品好课 -- end -->
+
     <!-- 兴趣选择设置 -- start -->
     <div class="interest">
       <el-dialog v-model="interestDialog" width="80%" :show-close="false">
@@ -70,10 +76,12 @@
         <CheckInterest :data="classCategorys" :initValue="interest" @setInterestList="setInterestList"></CheckInterest>
       </el-dialog>
     </div>
+
     <div class="floatCont fx-fd-col fx-ct">
-      <router-link to="/main/coupon">
+      <!-- todo -->
+      <!-- <router-link to="/main/coupon">
         <img src="@/assets/coup.png" coupon alt="" />
-      </router-link>
+      </router-link> -->
       <div class="cont">
         <img src="@/assets/btn_backtop.png" alt="" />
       </div>

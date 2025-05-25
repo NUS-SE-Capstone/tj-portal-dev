@@ -4,7 +4,7 @@
     <div class="image">
        <!-- 由于暂时不做直播 所以录播先去掉 -->
         <!-- <span class="label">录播</span> -->
-        <img :src="data.coverUrl == 'default-cover-url.jpg' ? defaultCover : data.coverUrl" alt="" />
+        <img :src="data.coverUrl || defaultCover" alt="" />
     </div>
     <div class="pd-10">
         <div class="title marg-bt-10 ft-14" v-html="data.name"></div>

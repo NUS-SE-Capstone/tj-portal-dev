@@ -2,8 +2,8 @@
 <template>
   <div class="calendar">
     <div class="label">
-      <div class="fx marg-rt-20"><span></span> Clock In </div>
-      <div class="fx"><span style="background: #ECF4FF;"></span>Clocked</div>
+      <div class="fx marg-rt-20"><span></span> NoClock </div>
+      <div class="fx"><span style="background: #2080F7;"></span>Clocked</div>
     </div>
     <div class="calendarHead">
       <span v-for="item in week" :key="item">{{item}}</span>
