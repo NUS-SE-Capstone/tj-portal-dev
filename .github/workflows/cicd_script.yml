@@ -57,15 +57,12 @@ jobs:
       - name: Deploying to Server via SSH
         uses: appleboy/ssh-action@v1
         with:
-          # 复制操作的参数。"-avzr --delete"意味部署时清空服务器目标目录下的所有文件
-          # ARGS: "-avzr --delete" 
-          # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
-          # SOURCE: "./dist/"
           host: ${{ secrets.REMOTE_HOST}}
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           port: 22
           script: |
+            echo "Deploying to server..."
             mkdir -p ${{ secrets.REMOTE_TARGET_PATH }}
             rsync -avzr --delete ./dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_PATH }}
 
