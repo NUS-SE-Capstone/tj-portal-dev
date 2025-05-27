@@ -221,13 +221,14 @@ const currentPlayTime = ref(0)
 const player = ref(null)
 const initPlay = (fileID, psign) => {
   player.value = new TCPlayer(videoRef.value, {
-    appID: '1312394356',
+    appID: '1361028219',
     fileID,
     psign,
     posterImage: true,
     autoplay: true,
     preload: 'auto',
     hlsConfig: {},
+    licenseUrl:'license/url',
   });
   player.value.on('timeupdate', function () {
     currentPlayData.moment = player.value.currentTime();
@@ -337,9 +338,10 @@ const playHadle = async (val) => {
       }
       player.value.loadVideoByID(
           {
-            appID: '1312394356',
+            appID: '1361028219',
             fileID: fileId.value,
             psign: signature.value,
+            licenseUrl:'license/url',
           }
       )
       player.value.currentTime(item.latestSectionMoment)
