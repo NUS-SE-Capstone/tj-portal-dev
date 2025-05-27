@@ -64,6 +64,6 @@ jobs:
           script: |
             echo "Deploying to server..."
             mkdir -p ${{ secrets.REMOTE_TARGET_PATH }}
-            rsync -avzr --delete ./dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_PATH }}
+            rsync -avzr --delete -e "ssh -o StrictHostKeyChecking=no" ./dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_PATH }}
 
           
