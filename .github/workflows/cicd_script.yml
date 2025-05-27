@@ -63,5 +63,4 @@ jobs:
           port: 22
           script: |
             mkdir -p ${{ secrets.REMOTE_TARGET_PATH }}
-            ls ${{ secrets.REMOTE_TARGET_PATH }}
-            rsync -avzr --delete ./dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_PATH }}
+            rsync -avzr ./dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_TARGET_PATH }}
