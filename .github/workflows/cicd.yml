@@ -53,7 +53,7 @@ jobs:
       - name: Deploying to Server via SSH
         uses: easingthemes/ssh-deploy@main
         with:
-          # 私钥, 存在secrets的PRIVATE_KEY中 
+          # 私钥, 存在secrets的PRIVATE_KEY中
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           # 复制操作的参数。"-avzr --delete"意味部署时清空服务器目标目录下的所有文件
           ARGS: "-avzr --delete" 
