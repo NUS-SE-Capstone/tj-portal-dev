@@ -23,12 +23,12 @@
       </div>
     </div>
     <div class="questCont">
-      <el-input class="title" v-model.number="quest.title" maxlength="64" @input="ruleshandle" show-word-limit placeholder="please input"/>
-      <el-input v-model="quest.description" rows="4" resize="none" type="textarea" @input="ruleshandle" maxlength="500" show-word-limit placeholder="please input" />
+      <el-input class="title" v-model.number="quest.title" maxlength="64" @input="ruleshandle" show-word-limit placeholder="please input title"/>
+      <el-input v-model="quest.description" rows="4" resize="none" type="textarea" @input="ruleshandle" maxlength="500" show-word-limit placeholder="please input question content" />
       <div class="fx-sb fx-al-ct" style="margin-top: 4px;">
         <div><el-checkbox v-model="quest.anonymity" label="anonymous" size="large" /></div>
         <div class="subCont">
-          <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="submitForm()">提问</span>
+          <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="submitForm()">Send</span>
         </div>
       </div>
     </div>

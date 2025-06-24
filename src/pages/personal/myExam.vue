@@ -58,7 +58,7 @@ const getExamListData = async () => {
     })
     .catch(() => {
       ElMessage({
-        message: "最近学习数据请求出错！",
+        message: "req exam list err!",
         type: 'error'
       });
     });
