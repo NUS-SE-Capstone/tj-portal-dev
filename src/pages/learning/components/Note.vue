@@ -48,7 +48,7 @@
     <div class="questCont">
       <el-input v-model="noteParams.content" rows="4" resize="none" type="textarea" @input="ruleshandle" maxlength="500" show-word-limit placeholder="please input" />
       <div class="fx-sb fx-al-ct" style="margin-top: 12px;">
-        <div><el-checkbox v-model="noteParams.isPrivate" label="私密" size="large" /></div>
+        <div><el-checkbox v-model="noteParams.isPrivate" label="private" size="large" /></div>
         <div class="subCont">
           <span class="bt ft-14" :class="{'bt-dis':!isSend}" @click="submitForm()">Save</span>
         </div>
