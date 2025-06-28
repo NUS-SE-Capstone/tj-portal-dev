@@ -184,7 +184,11 @@ const submit = () => {
 // 提交了
 const postSubjectHandle = async () => {
   const param = params.value.map(el => {
-    return { questionId: el.id, answer: el.answers.sort((i1, i2) => parseInt(i1)-parseInt(i2)).toString(), questionType: el.type }
+    const QAobj = { questionId: el.id, answer: el.answers, questionType: el.type }
+    if (Array.isArray(el.answers)) {
+      QAobj.answer = el.answers.sort((i1, i2) => parseInt(i1)-parseInt(i2)).toString()
+    }
+    return QAobj
   });
   await postSubject({ examDetails: param, id: examId.value })
     .then((res) => {
