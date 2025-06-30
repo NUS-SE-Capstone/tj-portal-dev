@@ -190,7 +190,7 @@ const postSubjectHandle = async () => {
     }
     return QAobj
   });
-  await postSubject({ examDetails: param, id: examId.value })
+  await postSubject({ examDetails: param, id: examId.value, examInfo: props.examInfo })
     .then((res) => {
       if (res.code === 200) {
         subjectList.value = res.data
