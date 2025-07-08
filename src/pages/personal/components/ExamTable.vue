@@ -7,7 +7,7 @@
           <div>{{scope.row.courseName}}</div>
         </template>
       </el-table-column>
-      <el-table-column center prop="sectionName" label="Section" align="center" min-width="160" />
+      <el-table-column center prop="sectionName" label="Section" align="center" min-width="150" />
       <el-table-column prop="commitTime" align="center" label="Time" width="180" >
         <template #default="scope">
           <span>{{scope.row.commitTime ? scope.row.commitTime : '--'}}</span>
@@ -15,10 +15,10 @@
       </el-table-column>
       <el-table-column prop="type" align="center" label="Type" width="100" >
         <template #default="scope">
-          <span>{{scope.row.type == 0 ? '练习' : '考试'}}</span>
+          <span>{{scope.row.type == 1 ? 'Exercise' : 'Test'}}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="score" align="center" label="Score" width="60" >
+      <el-table-column prop="score" align="center" label="Score" width="80" >
         <template #default="scope">
           <span>{{scope.row.score || 0}}</span>
         </template>

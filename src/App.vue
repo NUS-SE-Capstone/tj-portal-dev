@@ -6,6 +6,8 @@
 </template>
 
 <script setup>
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
-let locale = zhCn;
+// import zhCn from "element-plus/lib/locale/lang/zh-cn";
+// let locale = zhCn;
+import en from "element-plus/lib/locale/lang/en";
+let locale = en;
 </script>

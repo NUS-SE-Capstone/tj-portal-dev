@@ -2,7 +2,7 @@
 <template>
   <div class="myExamWrapper">
     <div class="personalCards" v-if="myExamData != null">
-      <CardsTitle class="marg-bt-20" title="我的考试" />
+      <CardsTitle class="marg-bt-20" title="My Exam" />
       <div v-if="count == 0" class="nodata">
         <Empty ></Empty>
       </div>

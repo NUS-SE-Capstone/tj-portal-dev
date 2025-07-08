@@ -1,7 +1,7 @@
 <!-- 我的考试 -->
 <template>
   <div class="myExamDetails">
-     <BreadCrumb></BreadCrumb>
+     <!-- <BreadCrumb></BreadCrumb> -->
      <div class="examHeadle">
       <div class="tit">Exam Marking</div>
       <div class="table">
@@ -14,16 +14,16 @@
             <div class="marg-bt-10 ft-wt-600 ft-cl-1">Section</div>
             <div>{{$route.query.sectionName}}</div>
           </div>
-          <div  class="td fx-1">
+          <!-- <div  class="td fx-1">
             <div class="marg-bt-10 ft-wt-600 ft-cl-1">Student</div>
             <div>{{stroe.getUserInfo.name}}</div>
-          </div>
+          </div> -->
         </div>
         <div class="fx-sb">
-          <div class="td fx-1">
+          <!-- <div class="td fx-1">
             <div class="marg-bt-10 ft-wt-600 ft-cl-1">Duration</div>
             <div>{{$route.query.duration ? timeFormat($route.query.duration) : '00 : 00 : 00'}} </div>
-          </div>
+          </div> -->
           <div  class="td fx-1">
             <div class="marg-bt-10 ft-wt-600 ft-cl-1">SubmitTime</div>
             <div>{{$route.query.commitTime}}</div>
@@ -58,7 +58,7 @@
             <div class="col ft-wt-600">Your Answer: {{answerChange(item.question.type, item.answer)}}</div>
             <div class="col rt ft-wt-600">Correct: {{answerChange(item.question.type, item.question.answer)}}</div>
             <div class="col">Level: {{defficultyChange(item.question.difficulty)}}</div>
-            <div>得分：{{item.score}}</div>
+            <div>score：{{item.score}}</div>
           </div>
           <div class="fx" v-if="item.question.analysis">Reason: <span v-html="item.question.analysis"></span></div>
         </div>
