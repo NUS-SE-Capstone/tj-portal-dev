@@ -132,8 +132,8 @@ const answerChange = (type, val) => {
       break
     }
     case 4 : {
-      data = val  ? 'True' : 'False'
-      break
+      data = val=='true'  ? 'True' : 'False'
+      break 
     }
     case 5 : {
       data = val
