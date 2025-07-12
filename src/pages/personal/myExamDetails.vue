@@ -56,16 +56,29 @@
         </div>
         <div class="analysis">
           <div class="fx marg-bt-20">
-            <div class="col ft-wt-600">Your Answer: {{answerChange(item.question.type, item.answer)}}</div>
-            <div class="col rt ft-wt-600">Correct: {{answerChange(item.question.type, item.question.answer)}}</div>
+            <!-- 答案-主观题 -->
+            <div class="col" style="width: 100%;" v-if="item.question.type==5">
+              <div class="ft-wt-600 marg-bt-10">Your Answer:
+                <CodeEditor :value="item.answer" :readonly="true"/>
+              </div>
+              <div class="ft-wt-600">Correct:
+                <CodeEditor :value="item.question.answer" :readonly="true"/>
+              </div>
+            </div>
+            <!-- 答案-客观题 -->
+            <div class="fx col" v-else>
+              <div class="col ft-wt-600">Your Answer: {{answerChange(item.question.type, item.answer)}}</div>
+              <div class="col rt ft-wt-600">Correct: {{answerChange(item.question.type, item.question.answer)}}</div>
+            </div>
+            <!-- 难度、得分 -->
             <div class="col">Level: {{defficultyChange(item.question.difficulty)}}</div>
-            <div>Score：{{item.yourScore}} / {{item.score}}</div>
+            <div>Score: {{item.yourScore}}/{{item.score}}</div>
           </div>
-          <div v-if="item.question.type==5">Ai Comment:
-            <br>
-            {{ item.comment }}</div>
+          <div v-if="item.question.type==5">AI Comments:
+            <div>{{ item.comment }}</div>
+          </div>
           <br>
-          <div class="fx" v-if="item.question.analysis">Reason: <span v-html="item.question.analysis"></span></div>
+          <div class="fx" v-if="item.question.analysis">Reason: <span style="padding-left: 8px;" v-html="item.question.analysis"></span></div>
         </div>
         </div>
      </div>
@@ -74,7 +87,8 @@
 <script setup>
 
 /** 数据导入 **/
-import { onMounted, ref, reactive } from "vue";
+import CodeEditor from '@/components/CodeEditor.vue'
+import { onMounted, ref, reactive, readonly } from "vue";
 import { ElMessage } from "element-plus";
 import { getExamDetails } from "@/api/class.js";
 import { upperAlpha, timeFormat } from "@/utils/tool.js"
