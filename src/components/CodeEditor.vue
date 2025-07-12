@@ -2,7 +2,7 @@
   <div
     id="code-editor"
     ref="codeEditorRef"
-    style="min-height: 400px; height: 60vh"
+    style="min-width: 300px;min-height: 400px;"
   />
   <!--  <a-button @click="fillValue">填充值</a-button>-->
 </template>
@@ -89,6 +89,9 @@ onMounted(() => {
     // roundedSelection: false,
     // scrollBeyondLastLine: false,
   });
+
+  // 格式化
+  codeEditor.value.getAction('editor.action.formatDocument').run();
 
   // 编辑 监听内容变化
   codeEditor.value.onDidChangeModelContent(() => {
