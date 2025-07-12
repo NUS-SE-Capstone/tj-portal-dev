@@ -19,6 +19,7 @@
     "axios": "^0.27.2",
     "element-plus": "^2.2.9",
     "moment": "^2.29.4",
+    "monaco-editor": "^0.52.2",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.15",
     "pinia-use-persist": "^0.0.21",

@@ -1,4 +1,4 @@
-const HOST = 'http://118.31.57.194:10010';
+const HOST = 'http://8.139.253.124:10010';
 
 export default {
   mock: {
