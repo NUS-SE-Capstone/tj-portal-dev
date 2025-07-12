@@ -5,34 +5,34 @@
       <div class="previewTit">Answer Sheet</div>
       <div class="previewList">
         <span v-for="(item, index) in params"
-          :class="{act: item && item.answers != undefined && String(item.answers) != ''}" :key="index">{{index +
-          1}}</span>
+          :class="{ act: item && item.answers != undefined && String(item.answers) != '' }" :key="index">{{ index +
+            1 }}</span>
       </div>
       <div class="previewSub" @click="submit"><span class="bt">Submit</span></div>
 
     </div>
     <div class="ExQuestions" v-infinite-scroll="load" style="overflow: auto">
       <div class="questions" v-for="(item, index) in subjectList" :key="index">
-        <div class="title fx" v-html="` <p>${index+1}. ${subjectTypeWt(item.type)}</p>${item.name}`"></div>
+        <div class="title fx" v-html="` <p>${index + 1}. ${subjectTypeWt(item.type)}</p>${item.name}`"></div>
         <!-- 不同的题型展示不同的题 1：单选题，2：多选题，3：不定向选择题，4：判断题，5：主观题 -->
         <div v-if="item.type == 1">
           <el-radio-group v-model="item.answers" class="ml-4">
-            <el-radio :label="ind+1" v-for="(it, ind) in item.options" :key="it" size="large">
-              <div class="fx"><span>{{upperAlpha(ind)}}</span><span v-html="it"></span></div>
+            <el-radio :label="ind + 1" v-for="(it, ind) in item.options" :key="it" size="large">
+              <div class="fx"><span>{{ upperAlpha(ind) }}</span><span v-html="it"></span></div>
             </el-radio>
           </el-radio-group>
         </div>
         <div v-if="item.type == 2">
           <el-checkbox-group v-model="item.answers">
-            <el-checkbox v-for="(it, ind) in item.options" :label="ind+1" :key="it">
-              <div class="fx"><span>{{upperAlpha(ind)}}</span><span v-html="it"></span></div>
+            <el-checkbox v-for="(it, ind) in item.options" :label="ind + 1" :key="it">
+              <div class="fx"><span>{{ upperAlpha(ind) }}</span><span v-html="it"></span></div>
             </el-checkbox>
           </el-checkbox-group>
         </div>
         <div v-if="item.type == 3">
           <el-checkbox-group v-model="item.answers">
-            <el-checkbox v-for="(it, ind) in item.options" :label="ind+1" :key="it">
-              <div class="fx"> <span>{{upperAlpha(ind)}}</span><span v-html="it"></span></div>
+            <el-checkbox v-for="(it, ind) in item.options" :label="ind + 1" :key="it">
+              <div class="fx"> <span>{{ upperAlpha(ind) }}</span><span v-html="it"></span></div>
             </el-checkbox>
           </el-checkbox-group>
         </div>
@@ -43,15 +43,20 @@
           </el-radio-group>
         </div>
         <div v-if="item.type == 5">
-          <el-input type="textarea" class="textArea" rows="5" maxlength="2000" v-model="item.answers"
-            placeholder="please input correct answer" show-word-limit></el-input>
+          <!-- <el-input type="textarea" class="textArea" rows="5" maxlength="200" v-model="item.answers"
+            placeholder="please input correct answer" show-word-limit></el-input> -->
+          <CodeEditor
+            :value="String(item.answers || '')"
+            :handle-change="(v) => item.answers = v"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
 <script setup>
-import { onMounted, ref, onBeforeUnmount } from 'vue'
+import CodeEditor from '@/components/CodeEditor.vue'
+import { onMounted, ref, onBeforeUnmount, readonly } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getSubject, postSubject } from '@/api/subject.js';
 import { dataCacheStore } from "@/store"
@@ -138,7 +143,14 @@ const getSubjectList = async () => {
     .then((res) => {
       if (res.code === 200) {
         examId.value = res.data.id;
-        subjectList.value = res.data.questions
+        subjectList.value = res.data.questions.map(question => {
+          // 确保主观题（type=5）的 answers 是 String 类型
+          if (String(question.type) === "5") {
+            question.answers = String(question.answers || ""); // 强制转为 String
+          }
+          return question;
+        });
+        console.log('subjectList', subjectList);
       } else {
         ElMessage({
           message: res.msg,
@@ -186,7 +198,7 @@ const postSubjectHandle = async () => {
   const param = params.value.map(el => {
     const QAobj = { questionId: el.id, answer: el.answers, questionType: el.type }
     if (Array.isArray(el.answers)) {
-      QAobj.answer = el.answers.sort((i1, i2) => parseInt(i1)-parseInt(i2)).toString()
+      QAobj.answer = el.answers.sort((i1, i2) => parseInt(i1) - parseInt(i2)).toString()
     }
     return QAobj
   });
