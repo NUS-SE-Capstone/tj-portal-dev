@@ -45,7 +45,10 @@
         <div v-if="item.type == 5">
           <!-- <el-input type="textarea" class="textArea" rows="5" maxlength="200" v-model="item.answers"
             placeholder="please input correct answer" show-word-limit></el-input> -->
-          <CodeEditor :value="String(item.answers || '')" :handle-change="(v) => item.answers = v" />
+          <CodeEditor
+            :value="String(item.answers || '')"
+            :handle-change="(v) => item.answers = v"
+          />
         </div>
       </div>
     </div>
@@ -53,7 +56,7 @@
 </template>
 <script setup>
 import CodeEditor from '@/components/CodeEditor.vue'
-import { onMounted, ref, onBeforeUnmount } from 'vue'
+import { onMounted, ref, onBeforeUnmount, readonly } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getSubject, postSubject } from '@/api/subject.js';
 import { dataCacheStore } from "@/store"

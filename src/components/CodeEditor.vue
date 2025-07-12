@@ -23,7 +23,8 @@ const DEFAULT_CODE = `public class Main {
 interface Props {
   value: string;
   language?: string;
-  handleChange: (v: string) => void;
+  handleChange?: (v: string) => void;
+  readonly?: boolean
 }
 
 /**
@@ -35,6 +36,7 @@ const props = withDefaults(defineProps<Props>(), {
   handleChange: (v: string) => {
     console.log(v);
   },
+  readonly: () => false
 });
 
 const codeEditorRef = ref();
@@ -81,7 +83,7 @@ onMounted(() => {
     minimap: {
       enabled: true,
     },
-    readOnly: false,
+    readOnly: props.readonly,
     theme: "vs-dark",
     // lineNumbers: "off",
     // roundedSelection: false,
