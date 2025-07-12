@@ -43,7 +43,7 @@
           </el-radio-group>
         </div>
         <div v-if="item.type == 5">
-          <el-input type="textarea" class="textArea" rows="5" maxlength="200" v-model="item.answers"
+          <el-input type="textarea" class="textArea" rows="5" maxlength="2000" v-model="item.answers"
             placeholder="please input correct answer" show-word-limit></el-input>
         </div>
       </div>

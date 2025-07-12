@@ -37,14 +37,15 @@
      </div>
      <div class="answerCardTitle" v-if="myExamDetails">AnswerSheet</div>
      <div class="answerCards">
-      <span v-for="(item, index) in myExamDetails" :key="index" :class="{right:item.correct,wrong:!item.correct && item.answer != ''}">{{index + 1}}</span>
+      <span v-for="(item, index) in myExamDetails" :key="index" :class="item.question.type !== 5? {right:item.correct,wrong:!item.correct && item.answer != ''}:{}">{{index + 1}}</span>
      </div>
      <div class="examCont" >
         <div class="item" v-for="(item, index) in myExamDetails" :key="index">
         <div class="examTitle">
           <div>
-            <img v-if="item.correct" src="@/assets/icon_right.png" alt="">
-            <img v-else src="@/assets/icon_wrong.png" alt="">
+            <img v-if="item.question.type!=5 && item.correct" src="@/assets/icon_right.png" alt="">
+            <img v-if="item.question.type!=5 && !item.correct" src="@/assets/icon_wrong.png" alt="">
+            <img v-if="item.question.type==5" src="@/assets/subjective.png" alt="">
           </div>
           <div class="quest fx">
             {{index+1}}. <span v-html="item.question.name"></span>
@@ -58,8 +59,12 @@
             <div class="col ft-wt-600">Your Answer: {{answerChange(item.question.type, item.answer)}}</div>
             <div class="col rt ft-wt-600">Correct: {{answerChange(item.question.type, item.question.answer)}}</div>
             <div class="col">Level: {{defficultyChange(item.question.difficulty)}}</div>
-            <div>score：{{item.score}}</div>
+            <div>Score：{{item.yourScore}} / {{item.score}}</div>
           </div>
+          <div v-if="item.question.type==5">Ai Comment:
+            <br>
+            {{ item.comment }}</div>
+          <br>
           <div class="fx" v-if="item.question.analysis">Reason: <span v-html="item.question.analysis"></span></div>
         </div>
         </div>
