@@ -7,7 +7,7 @@
   <!--  <a-button @click="fillValue">填充值</a-button>-->
 </template>
 
-<script setup lang="ts">
+<script setup>
 import * as monaco from "monaco-editor";
 import { onMounted, ref, toRaw, withDefaults, defineProps, watch } from "vue";
 
@@ -17,23 +17,32 @@ const DEFAULT_CODE = `public class Main {
     }
 }`
 
-/**
- * 定义组件属性类型
- */
-interface Props {
-  value: string;
-  language?: string;
-  handleChange?: (v: string) => void;
-  readonly?: boolean
-}
+// /**
+//  * 定义组件属性类型
+//  */
+// interface Props {
+//   value: string;
+//   language?: string;
+//   handleChange?: (v: string) => void;
+//   readonly?: boolean
+// }
 
-/**
- * 给组件指定初始值
- */
-const props = withDefaults(defineProps<Props>(), {
+// /**
+//  * 给组件指定初始值
+//  */
+// const props = withDefaults(defineProps<Props>(), {
+//   value: () => "",
+//   language: () => "java",
+//   handleChange: (v: string) => {
+//     console.log(v);
+//   },
+//   readonly: () => false
+// });
+
+const props = withDefaults(defineProps(), {
   value: () => "",
   language: () => "java",
-  handleChange: (v: string) => {
+  handleChange: (v) => {
     console.log(v);
   },
   readonly: () => false

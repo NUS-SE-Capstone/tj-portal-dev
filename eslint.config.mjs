@@ -30,6 +30,7 @@ export default defineConfig([
       "vue/no-dupe-keys": "off",
       "vue/no-unused-vars": "off",
       "vue/no-useless-template-attributes": "off",
+      "vue/valid-define-props": "off",
     },
   }
 ]);
