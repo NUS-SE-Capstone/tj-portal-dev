@@ -80,6 +80,7 @@ const checkHandle = val => {
 }
 // 更新信息的参数
 const user = reactive({
+  id: userInfo.value.id,
   name: userInfo.value.name,
   icon: userInfo.value.icon,
   gender: userInfo.value.gender || 0,
@@ -108,8 +109,10 @@ const changeHandle = () => {
 
 // 提交更新信息
 const updateUserInfoHandle = async () => {
+  console.log(user)
   await updateUserInfo(user)
     .then(async (res) => {
+      console.log(res)
       if (res.code == 200) {
         // 从新获取当前登录用户的信息
         const data = await getUserInfo()

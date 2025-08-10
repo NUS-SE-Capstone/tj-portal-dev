@@ -2,7 +2,13 @@
 <template>
   <div class="myExamWrapper">
     <div class="personalCards" v-if="myExamData != null">
-      <CardsTitle class="marg-bt-20" title="My Exam" />
+      <CardsTitle class="marg-bt-20" title="My Exam">
+        <el-tooltip content="This is your remaining token balance used for AI-based scoring of subjective questions." placement="top">
+          <span>
+          Token Balance: {{ userInfo.token }} / 5000
+          </span>
+        </el-tooltip>
+      </CardsTitle>
       <div v-if="count == 0" class="nodata">
         <Empty ></Empty>
       </div>
@@ -26,20 +32,38 @@
 import { onMounted, ref, reactive } from "vue";
 import { ElMessage } from "element-plus";
 import { getExamList } from "@/api/class.js";
+import { getUserInfo} from "@/api/user.js"
 
 // 组件导入
 import CardsTitle from './components/CardsTitle.vue'
 import ExamTable from './components/ExamTable.vue'
 import Empty from "@/components/Empty.vue";
 
+const userInfo = ref()
+
 // mounted生命周期
 onMounted(async () => {
   // 查询我的考试记录
   getExamListData()
+  getUserToken()
 });
 
 /** 方法定义 **/
-
+//查询我的个人信息
+const getUserToken = async() => {
+  await getUserInfo()
+  .then((res)=>{
+      if (res.code == 200 && res.data != null){
+        userInfo.value = res.data
+      }
+  })
+  .catch(() => {
+      ElMessage({
+        message: "get exam details err",
+        type: 'error'
+      });
+    });
+}
 // 查询我的考试记录
 const myExamData = ref(null)
 const count = ref(0)

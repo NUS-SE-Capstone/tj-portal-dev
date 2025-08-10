@@ -145,18 +145,18 @@ export default [
             component: () => import('@/pages/personal/myExamDetails.vue'),
             meta: { title: 'ExamDetail', current: 'ExamDetail', active:'myExam', hidden: true, icon: '&#xe615;'},
           },
-          {
-            path: 'myOrder',
-            name: 'myOrder',
-            component: () => import('@/pages/personal/myOrder.vue'),
-            meta: { title: 'MyOrder', active:'myOrder', icon: '&#xe60b;'},
-          },
-          {
-            path: 'myOrderDetails',
-            name: 'myOrderDetails',
-            component: () => import('@/pages/personal/myOrderDetails.vue'),
-            meta: { title: 'OrderDetail', current: 'OrderDetail', active:'myOrder', hidden: true, icon: '&#xe60b;'},
-          },
+          // {
+          //   path: 'myOrder',
+          //   name: 'myOrder',
+          //   component: () => import('@/pages/personal/myOrder.vue'),
+          //   meta: { title: 'MyOrder', active:'myOrder', icon: '&#xe60b;'},
+          // },
+          // {
+          //   path: 'myOrderDetails',
+          //   name: 'myOrderDetails',
+          //   component: () => import('@/pages/personal/myOrderDetails.vue'),
+          //   meta: { title: 'OrderDetail', current: 'OrderDetail', active:'myOrder', hidden: true, icon: '&#xe60b;'},
+          // },
           // {
           //   path: 'myCoupon',
           //   name: 'myCoupon',

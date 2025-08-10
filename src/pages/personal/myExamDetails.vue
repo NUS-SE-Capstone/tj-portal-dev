@@ -74,6 +74,9 @@
             <div class="col">Level: {{defficultyChange(item.question.difficulty)}}</div>
             <div>Score: {{item.yourScore}}/{{item.score}}</div>
           </div>
+          <div v-if="item.question.type==5">Total Tokens: {{ item.totalTokens }}
+          </div>
+          <br>
           <div v-if="item.question.type==5">AI Comments:
             <div>{{ item.comment }}</div>
           </div>
