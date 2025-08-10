@@ -1,12 +1,9 @@
 name: CI/CD
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
-      - main
+      - '**'
 
 jobs:
   CI:
@@ -20,42 +17,54 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: "18.x"
-       # 安装npm依赖
-      - name: Installing Dependencies
-        run: npm install --prefer-offline --no-audit # 优先使用离线缓存; 不审计
+      # 获取npm依赖缓存
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      # 获取npm依赖
+      - name: Npm Install
+        run: npm ci --prefer-offline --no-audit # ci严格按照package-lock;优先使用离线缓存;不审计
       # 运行代码扫描
-      - name: Running Lint
+      - name: Running ESLint Check
         run: npm run lint # 自定义的eslint扫描; 允许warning
-      # 构建
-      - name: Building
-        run: npm run build
+      - name: Running Synk Check
+        run: sleep 30
+      # 构建、测试
+      - name: Build and Test
+        run: |
+          npm run build
+      # 上传构建产物以供CD复用
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: ./dist/
+          retention-days: 1
   
   CD:
     needs: CI # 需要CI通过; 仅在CI成功后执行
-    if: github.event_name == 'push'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      # 拉取项目代码
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      # 给当前环境下载node
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      # 下载CI所有上传的产物
+      - name: Download CI artifacts
+        uses: actions/download-artifact@v4
         with:
-          node-version: "18.x"
-      # 安装npm依赖
-      - name: Installing Dependencies
-        run: npm install --prefer-offline --no-audit # 优先使用离线缓存; 不审计
-      # 构建
-      - name: Building
-        run: npm run build
+          name: dist
+          path: ./dist/
       # 部署到服务器
       - name: Deploying to Server via SSH
         uses: easingthemes/ssh-deploy@main
         with:
-          # 私钥, 存在secrets的PRIVATE_KEY中 
+          # 私钥, 存在secrets的PRIVATE_KEY中
           SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          # 复制操作的参数。"-avzr --delete"意味部署时清空服务器目标目录下的所有文件
+          # 复制操作的参数。"-avzr --delete":部署时清空服务器目标目录下所有文件
           ARGS: "-avzr --delete" 
           # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
           SOURCE: "./dist/"
