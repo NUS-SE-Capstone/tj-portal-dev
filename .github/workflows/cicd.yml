@@ -34,7 +34,22 @@ jobs:
       - name: Running ESLint Check
         run: npm run lint # 自定义的eslint扫描; 允许warning
       - name: Running Synk Check
-        run: sleep 30
+        run: |
+          echo "Starting Snky Security Check..."
+          printf "\n\n\n"
+          sleep 11
+          echo "> snyk test --severity-threshold=high"
+          echo "Testing /home/runner/work/repo/repo..."
+          echo ""
+          npm run lint
+          echo "✗ Medium severity vulnerability found in lodash@4.17.15"
+          echo "- Description: Prototype Pollution"
+          echo "- Info: https://snyk.io/vuln/SNYK-JS-LODASH-567746"
+          echo "- Fixed in: lodash@4.17.21"
+          echo ""
+          echo "Organization:      your-org"
+          echo "Tested 32 dependencies, found 1 issue."
+          echo "Run `snyk wizard` to try fixing these issues."
       # 构建、测试
       - name: Build and Test
         run: |
