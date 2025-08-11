@@ -38,7 +38,7 @@ jobs:
           echo "Starting Snky Security Check..."
           printf "\n\n\n"
           sleep 11
-          echo "> snyk test --severity-threshold=high"
+          echo "- snyk test --severity-threshold=high"
           echo "Testing /home/runner/work/repo/repo..."
           echo ""
           npm run lint
